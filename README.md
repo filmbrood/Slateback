@@ -1,7 +1,7 @@
 # Slateback
-Slateback is a software built for generating camera reports quickly and efficiently without compromising on detail.
+Slateback is a software built for generating camera reports quickly and efficiently.
 
 To-Do:
-[] Complete core data system
+[x] Complete core data system
 [] Complete command line interface
 [] Add GUI component
