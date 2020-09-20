@@ -76,6 +76,22 @@ void Camera::PrintCameraDetails()
 	std::cout << "2nd AC: " << GetSecondAssistantCamera() << std::endl;
 }
 
+void Camera::PushNewRoll(Roll* roll)
+{
+	m_RollCount++;
+	m_Rolls.push_back(roll);
+}
+
+Roll* Camera::GetRoll(unsigned int index)
+{
+	return m_Rolls[index];
+}
+
+unsigned int Camera::GetRollCount()
+{
+	return m_RollCount;
+}
+
 std::string Camera::CameraSetupDetail(std::string detail)
 {
 	std::string userinput;

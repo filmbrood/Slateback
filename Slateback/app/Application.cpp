@@ -4,7 +4,7 @@
 #include "../src/ProjectVector.h"
 #include "Commands.h"
 
-#define PROGRAMTITLE "2nd AC Logging Toolkit"
+#define PROGRAMTITLE "Slateback Camera Logger"
 #define VERSIONINFO "Pre-Alpha"
 #define AUTHOR "Dawn Moore"
 #define COPYRIGHT "2020"
@@ -29,13 +29,23 @@ int main()
 		std::cout << "\n";
 		if (projects.GetVectorSize() != 0)
 		{
+
 			Project* activeProject = projects.GetProject(Commands::Get().GetActiveProjectIndex());
-			unsigned int activeCamera = Commands::Get().GetActiveCameraIndex();
 
 			std::cout << "Active Project: " << activeProject->GetTitle() << "\n";
 
 			if (activeProject->GetCameraCount() != 0)
-				std::cout << "Active Camera: " << activeProject->GetCamera(activeCamera)->GetID() << " (" << activeProject->GetCamera(activeCamera)->GetModel() << " )\n";
+			{
+				Camera* activeCamera = activeProject->GetCamera(Commands::Get().GetActiveCameraIndex());
+				std::cout << "Active Camera: " << activeCamera->GetID() << " (" << activeCamera->GetModel() << " )\n";
+
+				if (activeCamera->GetRollCount() != 0)
+				{
+					Roll* activeRoll = activeCamera->GetRoll(Commands::Get().GetActiveRollIndex() - 1);
+					std::cout << "Active Roll: " << activeRoll->GetID() << "\n";
+				}
+			}
+
 		}
 		std::cout << "Input Command > ";
 
@@ -53,6 +63,14 @@ int main()
 		else if (userinput == "new camera")
 		{
 			Commands::Get().NewCamera(projects, userinput);
+		}
+		else if (userinput == "change camera")
+		{
+			Commands::Get().ChangeCamera(projects, userinput);
+		}
+		else if (userinput == "new roll")
+		{
+			Commands::Get().NewRoll(projects, userinput);
 		}
 		else
 			std::cout << "Unknown command\n";

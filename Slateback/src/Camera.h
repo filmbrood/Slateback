@@ -1,5 +1,8 @@
 #pragma once
 #include <string>
+#include <vector>
+
+#include "Roll.h"
 
 class Camera
 {
@@ -25,6 +28,13 @@ public:
 	void CameraSetup();
 	void PrintCameraDetails();
 
+public:
+	// For accessing Roll vector and data surrounding it
+	void PushNewRoll(Roll* roll);
+	Roll* GetRoll(unsigned int index);
+
+	unsigned int GetRollCount();
+
 private:
 	std::string m_Model;
 	std::string m_FilmBack;
@@ -36,4 +46,8 @@ private:
 	std::string m_SecondAssistantCamera;
 
 	std::string CameraSetupDetail(std::string detail);
+
+	std::vector<Roll*> m_Rolls;
+
+	unsigned int m_RollCount = 0;
 };

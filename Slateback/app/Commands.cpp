@@ -20,6 +20,11 @@ unsigned int Commands::GetActiveCameraIndex()
 	return m_ActiveCameraIndex;
 }
 
+unsigned int Commands::GetActiveRollIndex()
+{
+	return m_ActiveRollIndex;
+}
+
 void Commands::NewProject(ProjectVector& projects, std::string userinput)
 {
 	m_ProjectCount++;
@@ -63,4 +68,54 @@ void Commands::NewCamera(ProjectVector& projects, std::string userinput)
 	activeProject->GetCamera(m_ActiveCameraIndex)->PrintCameraDetails();
 
 	std::cout << "New camera created successfully.\n";
+}
+
+void Commands::ChangeCamera(ProjectVector& projects, std::string userinput)
+{
+	std::cout << "Change active camera to: " << std::endl;
+
+	Project* activeProject = projects.GetProject(m_ActiveProjectIndex);
+
+	for (size_t i = 0; i < activeProject->GetCameraCount(); i++)
+		std::cout << activeProject->GetCamera(i)->GetID() << " (" << activeProject->GetCamera(i)->GetModel() << ")\n";
+
+	getline(std::cin, userinput);
+
+	for (size_t i = 0; i < activeProject->GetCameraCount(); i++)
+		if (userinput == activeProject->GetCamera(i)->GetID())
+			m_ActiveCameraIndex = i;
+}
+
+void Commands::NewRoll(ProjectVector& projects, std::string userinput)
+{
+	Project* activeProject = projects.GetProject(m_ActiveProjectIndex);
+	Camera* activeCamera = activeProject->GetCamera(m_ActiveCameraIndex);
+
+	std::cout << "New roll created for Camera " << activeCamera->GetID() << " (" << activeCamera->GetModel() << "\n";
+
+	std::string newRollID = activeCamera->GetID() + "0" + std::to_string(activeCamera->GetRollCount() + 1);
+	
+	activeCamera->PushNewRoll(new Roll);
+	activeCamera->GetRoll(m_ActiveRollIndex)->SetID(newRollID);
+	
+	std::cout << "Roll number: " << activeCamera->GetRoll(m_ActiveRollIndex)->GetID() << "\n";
+
+	m_ActiveRollIndex++;
+}
+
+void Commands::ChangeRoll(ProjectVector& projects, std::string userinput)
+{
+	Project* activeProject = projects.GetProject(m_ActiveProjectIndex);
+	Camera* activeCamera = activeProject->GetCamera(m_ActiveCameraIndex);
+	
+	std::cout << "Change active roll to: " << std::endl;
+
+	for (size_t i = 0; i < activeCamera->GetRollCount(); i++)
+		std::cout << activeCamera->GetRoll(i)->GetID() << "\n";
+
+	getline(std::cin, userinput);
+
+	for (size_t i = 0; i < activeCamera->GetRollCount(); i++)
+		if (userinput == activeCamera->GetRoll(i)->GetID())
+			m_ActiveRollIndex = i;
 }
