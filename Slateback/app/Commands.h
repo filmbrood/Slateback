@@ -16,6 +16,9 @@ public:
 	void NewRoll(ProjectVector& projects, std::string userinput);
 	void ChangeRoll(ProjectVector& projects, std::string userinput);
 
+	void NewShot(ProjectVector& projects, std::string userinput);
+	void ViewShot(ProjectVector& projects, std::string userinput);
+
 public:
 	static Commands& Get();
 

@@ -1,5 +1,8 @@
 #pragma once
 #include <string>
+#include <vector>
+
+#include "Shot.h"
 
 class Roll
 {
@@ -9,7 +12,16 @@ public:
 
 	std::string GetID();
 	unsigned int GetShotCount();
+
+	
+public:
+	// For manipulating and retrieving data from m_Shots vector
+	void PushNewShot(Shot* shot);
+	Shot* GetShot(unsigned int index);
+
 private:
 	std::string m_ID;
 	unsigned int m_ShotCount;
+
+	std::vector<Shot*> m_Shots;
 };

@@ -54,6 +54,12 @@ void Commands::ChangeProject(ProjectVector& projects, std::string userinput)
 
 void Commands::NewCamera(ProjectVector& projects, std::string userinput)
 {
+	if (projects.GetVectorSize() < 1)
+	{
+		std::cout << "You must create a project before creating any cameras.\n";
+		return;
+	}
+	
 	Project* activeProject = projects.GetProject(m_ActiveProjectIndex);
 
 	activeProject->PushBackCamera(new Camera);
@@ -88,7 +94,20 @@ void Commands::ChangeCamera(ProjectVector& projects, std::string userinput)
 
 void Commands::NewRoll(ProjectVector& projects, std::string userinput)
 {
+	if (projects.GetVectorSize() < 1)
+	{
+		std::cout << "You must create a project and a camera before you create any rolls.\n";
+		return;
+	}
+
 	Project* activeProject = projects.GetProject(m_ActiveProjectIndex);
+
+	if (activeProject->GetCameraCount() < 1)
+	{
+		std::cout << "You must create a camera before you create any rolls.\n";
+		return;
+	}
+
 	Camera* activeCamera = activeProject->GetCamera(m_ActiveCameraIndex);
 
 	std::cout << "New roll created for Camera " << activeCamera->GetID() << " (" << activeCamera->GetModel() << "\n";
@@ -99,8 +118,6 @@ void Commands::NewRoll(ProjectVector& projects, std::string userinput)
 	activeCamera->GetRoll(m_ActiveRollIndex)->SetID(newRollID);
 	
 	std::cout << "Roll number: " << activeCamera->GetRoll(m_ActiveRollIndex)->GetID() << "\n";
-
-	m_ActiveRollIndex++;
 }
 
 void Commands::ChangeRoll(ProjectVector& projects, std::string userinput)
@@ -118,4 +135,27 @@ void Commands::ChangeRoll(ProjectVector& projects, std::string userinput)
 	for (size_t i = 0; i < activeCamera->GetRollCount(); i++)
 		if (userinput == activeCamera->GetRoll(i)->GetID())
 			m_ActiveRollIndex = i;
+}
+
+void Commands::NewShot(ProjectVector& projects, std::string userinput)
+{
+	Project* activeProject = projects.GetProject(m_ActiveProjectIndex);
+	Camera* activeCamera = activeProject->GetCamera(m_ActiveCameraIndex);
+	Roll* activeRoll = activeCamera->GetRoll(m_ActiveRollIndex);
+
+	activeRoll->PushNewShot(new Shot);
+
+	std::cout << "New shot added to roll " << activeRoll->GetID();
+}
+
+void Commands::ViewShot(ProjectVector& projects, std::string userinput)
+{
+	std::cout << "Enter shot to view details of, formatted as 'Scene-Take' e.g. 1A-1 > ";
+	getline(std::cin, userinput);
+
+	Roll* activeRoll = projects.GetProject(m_ActiveProjectIndex)->GetCamera(m_ActiveCameraIndex)->GetRoll(m_ActiveRollIndex);
+
+	for (unsigned int i = 0; i < activeRoll->GetShotCount(); i++)
+		if (userinput == activeRoll->GetShot(i)->GetScene() + "-" + activeRoll->GetShot(i)->GetTake())
+			activeRoll->GetShot(i)->PrintShotDetails();
 }

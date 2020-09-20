@@ -19,3 +19,16 @@ unsigned int Roll::GetShotCount()
 {
 	return m_ShotCount;
 }
+
+void Roll::PushNewShot(Shot* shot)
+{
+	m_ShotCount++;
+	m_Shots.push_back(shot);
+
+	m_Shots[m_ShotCount - 1]->ShotSetup();
+}
+
+Shot* Roll::GetShot(unsigned int index)
+{
+	return m_Shots[index];
+}

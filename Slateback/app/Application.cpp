@@ -25,7 +25,7 @@ int main()
 
 	while (running)
 	{
-		// Takes in user command, displays active project and active camera
+		// Takes in user command, displays active project, camera, roll, and shot
 		std::cout << "\n";
 		if (projects.GetVectorSize() != 0)
 		{
@@ -41,7 +41,7 @@ int main()
 
 				if (activeCamera->GetRollCount() != 0)
 				{
-					Roll* activeRoll = activeCamera->GetRoll(Commands::Get().GetActiveRollIndex() - 1);
+					Roll* activeRoll = activeCamera->GetRoll(Commands::Get().GetActiveRollIndex());
 					std::cout << "Active Roll: " << activeRoll->GetID() << "\n";
 				}
 			}
@@ -71,6 +71,14 @@ int main()
 		else if (userinput == "new roll")
 		{
 			Commands::Get().NewRoll(projects, userinput);
+		}
+		else if (userinput == "new shot")
+		{
+			Commands::Get().NewShot(projects, userinput);
+		}
+		else if (userinput == "view shot")
+		{
+			Commands::Get().ViewShot(projects, userinput);
 		}
 		else
 			std::cout << "Unknown command\n";
