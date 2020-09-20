@@ -86,9 +86,17 @@ void Project::SaveProjectToFile()
 	output << "Company: " << GetCompany() << std::endl;
 	output << "Director: " << GetDirector() << std::endl;
 	output << "DP: " << GetDP() << std::endl;
+	output << "\n";
 
 	for (unsigned int i = 0; i < m_CameraCount; i++)
-		output << m_Cameras[i]->PrintCameraDetailsToString();
+	{
+		Camera* activeCamera = GetCamera(i);
+		output << activeCamera->PrintCameraDetailsToString();
+		output << "\n";
+
+		for (unsigned int j = 0; j < activeCamera->GetRollCount(); j++)
+			output << activeCamera->GetRoll(j)->PrintShotDetailsToString();
+	}
 }
 
 std::string Project::ProjectSetupDetail(std::string detail)

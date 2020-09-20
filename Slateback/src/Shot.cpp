@@ -42,11 +42,6 @@ void Shot::SetFilter(std::string filter)
 	m_Filter = filter;
 }
 
-void Shot::SetPrint(bool p)
-{
-	m_Print = p;
-}
-
 std::string Shot::GetScene()
 {
 	return m_Scene;
@@ -87,11 +82,6 @@ std::string Shot::GetFilter()
 	return m_Filter;
 }
 
-bool Shot::CheckPrint()
-{
-	return m_Print;
-}
-
 void Shot::ShotSetup()
 {
 	SetScene(ShotSetupDetail("Scene"));
@@ -102,11 +92,6 @@ void Shot::ShotSetup()
 	SetISO(ShotSetupDetail("ISO"));
 	SetColorTemp(ShotSetupDetail("Color Temp"));
 	SetFilter(ShotSetupDetail("Filter"));
-
-	if (ShotSetupDetail("Set shot to Print? Y/N") == "Y")
-		SetPrint(true);
-	else
-		SetPrint(false);
 }
 
 void Shot::PrintShotDetails()
@@ -120,10 +105,6 @@ void Shot::PrintShotDetails()
 	std::cout << "ISO: " << GetISO() << "\n";
 	std::cout << "Color Temp: " << GetColorTemp() << "\n";
 	std::cout << "Filter: " << GetFilter() << "\n";
-	if (CheckPrint())
-		std::cout << "Print: Yes\n";
-	else
-		std::cout << "Print: No\n";
 }
 
 std::string Shot::ShotSetupDetail(std::string detail)

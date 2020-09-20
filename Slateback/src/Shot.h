@@ -12,7 +12,6 @@ public:
 	void SetISO(std::string iso);
 	void SetColorTemp(std::string colortemp);
 	void SetFilter(std::string filter);
-	void SetPrint(bool p);
 
 	std::string GetScene();
 	std::string GetTake();
@@ -22,7 +21,6 @@ public:
 	std::string GetISO();
 	std::string GetColorTemp();
 	std::string GetFilter();
-	bool CheckPrint();
 
 public:
 	void ShotSetup();

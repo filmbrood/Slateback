@@ -19,6 +19,7 @@ public:
 	void PushNewShot(Shot* shot);
 	Shot* GetShot(unsigned int index);
 
+	std::string PrintShotDetailsToString();
 private:
 	std::string m_ID;
 	unsigned int m_ShotCount;

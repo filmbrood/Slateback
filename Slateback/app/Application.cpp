@@ -52,6 +52,7 @@ int main()
 		getline(std::cin, userinput);
 
 		// Branching options for different commands
+
 		if (userinput == "new project")
 		{
 			Commands::Get().NewProject(projects, userinput);
