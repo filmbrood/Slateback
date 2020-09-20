@@ -23,21 +23,6 @@ void Project::SetDP(std::string dop)
 	m_DP = dop;
 }
 
-void Project::SetCameraOperator(std::string camop)
-{
-	m_CameraOperator = camop;
-}
-
-void Project::SetFirstAssistantCamera(std::string firstAC)
-{
-	m_FirstAssistantCamera = firstAC;
-}
-
-void Project::SetSecondAssistantCamera(std::string secondAC)
-{
-	m_SecondAssistantCamera = secondAC;
-}
-
 std::string Project::GetTitle()
 {
 	return m_Title;
@@ -58,20 +43,7 @@ std::string Project::GetDP()
 	return m_DP;
 }
 
-std::string Project::GetCameraOperator()
-{
-	return m_CameraOperator;
-}
 
-std::string Project::GetFirstAssistantCamera()
-{
-	return m_FirstAssistantCamera;
-}
-
-std::string Project::GetSecondAssistantCamera()
-{
-	return m_SecondAssistantCamera;
-}
 
 void Project::ProjectSetup()
 {
@@ -79,9 +51,6 @@ void Project::ProjectSetup()
 	SetCompany(ProjectSetupDetail("Company"));
 	SetDirector(ProjectSetupDetail("Director"));
 	SetDP(ProjectSetupDetail("DP"));
-	SetCameraOperator(ProjectSetupDetail("Camera Operator"));
-	SetFirstAssistantCamera(ProjectSetupDetail("First Assistant Camera"));
-	SetSecondAssistantCamera(ProjectSetupDetail("Second Assistant Camera"));
 }
 
 void Project::PrintProjectDetails()
@@ -90,9 +59,6 @@ void Project::PrintProjectDetails()
 	std::cout << "Company: " << GetCompany() << std::endl;
 	std::cout << "Director: " << GetDirector() << std::endl;
 	std::cout << "DP: " << GetDP() << std::endl;
-	std::cout << "Camera Operator: " << GetCameraOperator() << std::endl;
-	std::cout << "1st AC: " << GetFirstAssistantCamera() << std::endl;
-	std::cout << "2nd AC: " << GetSecondAssistantCamera() << std::endl;
 }
 
 void Project::PushBackCamera(Camera* c)

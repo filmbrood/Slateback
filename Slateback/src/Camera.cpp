@@ -59,6 +59,9 @@ void Camera::CameraSetup()
 	SetCodec(CameraSetupDetail("Codec or Film Stock"));
 	SetID(CameraSetupDetail("ID (A, B, C)"));
 	SetLensSet(CameraSetupDetail("Lens Set"));
+	SetCameraOperator(CameraSetupDetail("Camera Operator"));
+	SetFirstAssistantCamera(CameraSetupDetail("First Assistant Camera"));
+	SetSecondAssistantCamera(CameraSetupDetail("Second Assistant Camera"));
 }
 
 void Camera::PrintCameraDetails()
@@ -68,6 +71,9 @@ void Camera::PrintCameraDetails()
 	std::cout << "Codec: " << GetCodec() << std::endl;
 	std::cout << "ID: " << GetID() << std::endl;
 	std::cout << "Lens Set: " << GetLensSet() << std::endl;
+	std::cout << "Camera Operator: " << GetCameraOperator() << std::endl;
+	std::cout << "1st AC: " << GetFirstAssistantCamera() << std::endl;
+	std::cout << "2nd AC: " << GetSecondAssistantCamera() << std::endl;
 }
 
 std::string Camera::CameraSetupDetail(std::string detail)
@@ -78,4 +84,34 @@ std::string Camera::CameraSetupDetail(std::string detail)
 	getline(std::cin, userinput);
 
 	return userinput;
+}
+
+void Camera::SetCameraOperator(std::string camop)
+{
+	m_CameraOperator = camop;
+}
+
+void Camera::SetFirstAssistantCamera(std::string firstAC)
+{
+	m_FirstAssistantCamera = firstAC;
+}
+
+void Camera::SetSecondAssistantCamera(std::string secondAC)
+{
+	m_SecondAssistantCamera = secondAC;
+}
+
+std::string Camera::GetCameraOperator()
+{
+	return m_CameraOperator;
+}
+
+std::string Camera::GetFirstAssistantCamera()
+{
+	return m_FirstAssistantCamera;
+}
+
+std::string Camera::GetSecondAssistantCamera()
+{
+	return m_SecondAssistantCamera;
 }
