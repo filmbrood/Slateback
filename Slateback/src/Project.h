@@ -17,6 +17,7 @@ public:
 	std::string GetDirector();
 	std::string GetDP();
 
+public:
 	// Runs command line setup for applying values to all member variables
 	void ProjectSetup();
 
@@ -31,6 +32,9 @@ public:
 
 	// Retrieves number of cameras in m_Cameras vector
 	unsigned int GetCameraCount();
+
+	// Saves project data and all children to text file
+	void SaveProjectToFile();
 
 private:
 	std::string m_Title;

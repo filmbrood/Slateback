@@ -92,6 +92,27 @@ unsigned int Camera::GetRollCount()
 	return m_RollCount;
 }
 
+std::string Camera::PrintCameraDetailsToString()
+{
+	std::string output;
+
+	std::string details[7] =
+	{
+		"[Camera " + GetID() + "]\n",
+		"Model: " + GetModel() + "\n",
+		"Film Back: " + GetFilmBack() + "\n",
+		"Lens Set: " + GetLensSet() + "\n",
+		"Operator: " + GetCameraOperator() + "\n",
+		"1st AC: " + GetFirstAssistantCamera() + "\n",
+		"2nd AC: " + GetSecondAssistantCamera() + "\n"
+	};
+
+	for (unsigned int i = 0; i < 7; i++)
+		output += details[i];
+
+	return output;
+}
+
 std::string Camera::CameraSetupDetail(std::string detail)
 {
 	std::string userinput;

@@ -35,6 +35,8 @@ public:
 
 	unsigned int GetRollCount();
 
+	std::string PrintCameraDetailsToString();
+
 private:
 	std::string m_Model;
 	std::string m_FilmBack;

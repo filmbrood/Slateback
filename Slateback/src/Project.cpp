@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #include "Project.h"
 
@@ -43,8 +44,6 @@ std::string Project::GetDP()
 	return m_DP;
 }
 
-
-
 void Project::ProjectSetup()
 {
 	SetTitle(ProjectSetupDetail("Title"));
@@ -75,6 +74,21 @@ Camera* Project::GetCamera(unsigned int index)
 unsigned int Project::GetCameraCount()
 {
 	return m_CameraCount;
+}
+
+void Project::SaveProjectToFile()
+{
+	std::ofstream output;
+	output.open(GetTitle() + ".txt");
+
+	output << "[CAMERA REPORT]" << std::endl;;
+	output << "Title: " << GetTitle() << std::endl;
+	output << "Company: " << GetCompany() << std::endl;
+	output << "Director: " << GetDirector() << std::endl;
+	output << "DP: " << GetDP() << std::endl;
+
+	for (unsigned int i = 0; i < m_CameraCount; i++)
+		output << m_Cameras[i]->PrintCameraDetailsToString();
 }
 
 std::string Project::ProjectSetupDetail(std::string detail)

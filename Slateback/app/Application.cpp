@@ -80,6 +80,11 @@ int main()
 		{
 			Commands::Get().ViewShot(projects, userinput);
 		}
+		else if (userinput == "exit")
+		{
+			running = false;
+			projects.GetProject(Commands::Get().GetActiveProjectIndex())->SaveProjectToFile();
+		}
 		else
 			std::cout << "Unknown command\n";
 	}
