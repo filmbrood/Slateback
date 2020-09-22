@@ -4,11 +4,11 @@
 
 #include "Shot.h"
 
+// Data class containing Roll details, which also acts as a container class for a vector of Shot objects.
 class Roll
 {
 public:
 	void SetID(std::string id);
-	void SetShotCount(unsigned int n);
 
 	std::string GetID();
 	unsigned int GetShotCount();
@@ -19,10 +19,8 @@ public:
 	void PushNewShot(Shot* shot);
 	Shot* GetShot(unsigned int index);
 
-	std::string PrintShotDetailsToString();
 private:
 	std::string m_ID;
-	unsigned int m_ShotCount;
 
 	std::vector<Shot*> m_Shots;
 };

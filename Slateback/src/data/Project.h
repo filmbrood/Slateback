@@ -4,6 +4,7 @@
 
 #include "Camera.h"
 
+// Data class containing Project details, which also acts as a container for a vector of Camera object pointers.
 class Project
 {
 public:
@@ -33,19 +34,12 @@ public:
 	// Retrieves number of cameras in m_Cameras vector
 	unsigned int GetCameraCount();
 
-	// Saves project data and all children to text file
-	void SaveProjectToFile();
-
 private:
 	std::string m_Title;
 	std::string m_Company;
 	std::string m_Director;
 	std::string m_DP;
 
-	std::string ProjectSetupDetail(std::string detail);
-
 	// Dynamic array with cameras per project
 	std::vector<Camera*> m_Cameras;
-
-	unsigned int m_CameraCount = 0;
 };

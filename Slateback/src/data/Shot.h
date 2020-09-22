@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+// Data class for details regarding shot objects, which are contained within the Roll class as pointers in vector.
 class Shot
 {
 public:
@@ -22,14 +23,7 @@ public:
 	std::string GetColorTemp();
 	std::string GetFilter();
 
-public:
-	void ShotSetup();
-
-	void PrintShotDetails();
-
 private:
-	std::string ShotSetupDetail(std::string detail);
-
 	std::string m_Scene;
 	std::string m_Take;
 	std::string m_FPS;
@@ -38,5 +32,4 @@ private:
 	std::string m_ISO;
 	std::string m_ColorTemp;
 	std::string m_Filter;
-	bool m_Print;
 };

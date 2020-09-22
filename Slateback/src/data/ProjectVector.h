@@ -4,6 +4,7 @@
 
 #include "Project.h"
 
+// Container class for a vector of Project object pointers.
 class ProjectVector
 {
 public:
