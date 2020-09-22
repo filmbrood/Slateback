@@ -5,26 +5,25 @@
 
 int main()
 {
+	std::string teststring;
+
 	auto slateback = Controller::Get();
 	slateback.PushBackNewProject();
-	slateback.GetActiveProject()->SetDirector("Wes Anderson\n");
-	std::string teststring = slateback.GetActiveProject()->GetDirector();
+	slateback.GetActiveProject()->SetDirector("Wes Anderson");
 
 	slateback.PushBackNewCamera();
-	slateback.GetActiveCamera()->SetModel("Arri Alexa Mini\n");
-	teststring += slateback.GetActiveCamera()->GetModel();
+	slateback.GetActiveCamera()->SetModel("Arri Alexa Mini");
 
 	slateback.PushBackNewCamera();
-	slateback.GetActiveCamera()->SetModel("Blackmagic Pocket\n");
-	teststring += slateback.GetActiveCamera()->GetModel();
+	slateback.GetActiveCamera()->SetModel("Blackmagic Pocket");
 
 	slateback.PushBackNewRoll();
-	slateback.GetActiveRoll()->SetID("A001\n");
-	teststring += slateback.GetActiveRoll()->GetID();
+	slateback.GetActiveRoll()->SetID("A001");
 
 	slateback.PushBackNewShot();
-	slateback.GetActiveShot()->SetScene("1A\n");
-	teststring += slateback.GetActiveShot()->GetScene();
+	slateback.GetActiveShot()->SetScene("1A");
+
+	teststring += slateback.GetLogOutputString();
 
 	std::cout << teststring;
 	std::cin.get();

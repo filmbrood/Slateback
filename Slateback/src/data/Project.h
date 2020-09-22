@@ -22,9 +22,6 @@ public:
 	// Runs command line setup for applying values to all member variables
 	void ProjectSetup();
 
-	// Prints all member variables to command line
-	void PrintProjectDetails();
-
 	// Pushes new pointer camera object into m_Cameras vector
 	void PushBackCamera(Camera* c);
 
