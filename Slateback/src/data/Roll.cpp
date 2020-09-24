@@ -1,5 +1,11 @@
 #include "Roll.h"
 
+Roll::~Roll()
+{
+	for (unsigned int i = 0; i < m_Shots.size(); i++)
+		delete m_Shots[i];
+}
+
 void Roll::SetID(std::string id)
 {
 	m_ID = id;
@@ -10,7 +16,7 @@ std::string Roll::GetID()
 	return m_ID;
 }
 
-unsigned int Roll::GetShotCount()
+size_t Roll::GetShotCount()
 {
 	return m_Shots.size();
 }

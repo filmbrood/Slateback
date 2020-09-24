@@ -8,6 +8,9 @@
 class Project
 {
 public:
+	// Deconstructor for deleting m_Cameras pointer vector
+	~Project();
+
 	void SetTitle(std::string title);
 	void SetCompany(std::string company);
 	void SetDirector(std::string director);
@@ -29,7 +32,7 @@ public:
 	Camera* GetCamera(unsigned int index);
 
 	// Retrieves number of cameras in m_Cameras vector
-	unsigned int GetCameraCount();
+	size_t GetCameraCount();
 
 private:
 	std::string m_Title;

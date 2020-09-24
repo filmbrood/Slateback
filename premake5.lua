@@ -52,6 +52,7 @@ project "SlatebackAppCLI"
 	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	targetname ("slateback")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files

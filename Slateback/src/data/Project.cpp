@@ -2,6 +2,12 @@
 
 #include "Project.h"
 
+Project::~Project()
+{
+	for (unsigned int i = 0; i < m_Cameras.size(); i++)
+		delete m_Cameras[i];
+}
+
 void Project::SetTitle(std::string title)
 {
 	m_Title = title;
@@ -52,7 +58,7 @@ Camera* Project::GetCamera(unsigned int index)
 	return m_Cameras[index];
 }
 
-unsigned int Project::GetCameraCount()
+size_t Project::GetCameraCount()
 {
 	return m_Cameras.size();
 }

@@ -15,8 +15,10 @@ void CommandList::InitAllCommands()
 		m_Commands[i]->OnInit();
 }
 
-void CommandList::OnUpdate(std::string userinput)
+void CommandList::OnUpdate(const char* argv)
 {
+	std::string userinput = argv;
+
 	for (unsigned int i = 0; i < m_Commands.size(); i++)
 	{
 		if (m_Commands[i]->GetInput() == userinput)
@@ -25,9 +27,11 @@ void CommandList::OnUpdate(std::string userinput)
 }
 
 // Define command methods here.
+
+// "project" argument functions
 void NewProject::OnInit()
 {
-	SetInput("new project");
+	SetInput("project");
 }
 
 void NewProject::OnUpdate()
@@ -36,9 +40,10 @@ void NewProject::OnUpdate()
 	std::cout << "New project added." << std::endl;
 }
 
+// "camera" argument functions
 void NewCamera::OnInit()
 {
-	SetInput("new camera");
+	SetInput("camera");
 }
 
 void NewCamera::OnUpdate()
@@ -47,9 +52,10 @@ void NewCamera::OnUpdate()
 	std::cout << "New camera added." << std::endl;
 }
 
+// "roll" argument functions
 void NewRoll::OnInit()
 {
-	SetInput("new roll");
+	SetInput("roll");
 }
 
 void NewRoll::OnUpdate()
@@ -58,9 +64,10 @@ void NewRoll::OnUpdate()
 	std::cout << "New roll added." << std::endl;
 }
 
+// "shot" argument functions
 void NewShot::OnInit()
 {
-	SetInput("new shot");
+	SetInput("shot");
 }
 
 void NewShot::OnUpdate()

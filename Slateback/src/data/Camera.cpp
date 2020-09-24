@@ -2,6 +2,12 @@
 
 #include "Camera.h"
 
+Camera::~Camera()
+{
+	for (unsigned int i = 0; i < m_Rolls.size(); i++)
+		delete m_Rolls[i];
+}
+
 void Camera::SetModel(std::string model)
 {
 	m_Model = model;
@@ -62,7 +68,7 @@ Roll* Camera::GetRoll(unsigned int index)
 	return m_Rolls[index];
 }
 
-unsigned int Camera::GetRollCount()
+size_t Camera::GetRollCount()
 {
 	return m_Rolls.size();
 }

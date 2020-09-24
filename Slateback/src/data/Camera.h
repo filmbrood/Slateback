@@ -8,6 +8,9 @@
 class Camera
 {
 public:
+	// Deconstructor for deleting m_Rolls pointer vector
+	~Camera();
+
 	// Functions for manipulating all member variables
 	void SetModel(std::string model);
 	void SetFilmBack(std::string filmback);
@@ -34,7 +37,7 @@ public:
 	Roll* GetRoll(unsigned int index);
 
 	// Returns size of m_Rolls vector
-	unsigned int GetRollCount();
+	size_t GetRollCount();
 
 private:
 	std::string m_Model;

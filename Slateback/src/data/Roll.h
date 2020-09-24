@@ -8,12 +8,14 @@
 class Roll
 {
 public:
+	// Deconstructor for deleting m_Shots pointer vector
+	~Roll();
+
 	void SetID(std::string id);
-
 	std::string GetID();
-	unsigned int GetShotCount();
 
-	
+	size_t GetShotCount();
+
 public:
 	// For manipulating and retrieving data from m_Shots vector
 	void PushNewShot(Shot* shot);
