@@ -8,6 +8,9 @@
 class CommandList
 {
 public:
+	// Deconstructor for deleting m_Commands vector
+	~CommandList();
+
 	void PushNewCommand(Command* command);
 	void InitAllCommands();
 

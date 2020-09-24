@@ -1,7 +1,15 @@
 #include <iostream>
+#include <filesystem>
+#include <fstream>
 
 #include "slateback.h"
 #include "CommandList.h"
+
+CommandList::~CommandList()
+{
+	for (unsigned int i = 0; i < m_Commands.size(); i++)
+		delete m_Commands[i];
+}
 
 // CommandList functions. These handle updating the program and pushing new commands to the CommandList vector.
 void CommandList::PushNewCommand(Command* command)
@@ -36,8 +44,40 @@ void NewProject::OnInit()
 
 void NewProject::OnUpdate()
 {
+	std::string userinput;
+
 	Controller::Get().PushBackNewProject();
-	std::cout << "New project added." << std::endl;
+	std::cout << "New project created." << std::endl;
+
+	// User input for project detail member variables
+	std::cout << "Project Title > ";
+	getline(std::cin, userinput);
+	Controller::Get().GetActiveProject()->SetTitle(userinput);
+
+	std::cout << "Project Company > ";
+	getline(std::cin, userinput);
+	Controller::Get().GetActiveProject()->SetCompany(userinput);
+
+	std::cout << "Project Director > ";
+	getline(std::cin, userinput);
+	Controller::Get().GetActiveProject()->SetDirector(userinput);
+
+	std::cout << "Project DP > ";
+	getline(std::cin, userinput);
+	Controller::Get().GetActiveProject()->SetDP(userinput);
+
+	// Use project title to create new directory
+	std::string& projectTitle = Controller::Get().GetActiveProject()->GetTitle();
+	std::filesystem::create_directory(projectTitle);
+
+	// Create .ini file in active directory
+	std::ofstream configFileOutput;
+	configFileOutput.open(projectTitle + ".ini");
+	configFileOutput << projectTitle;
+	configFileOutput.close();
+
+	std::cout << std::endl;
+	std::cout << "Project details saved." << std::endl;
 }
 
 // "camera" argument functions
