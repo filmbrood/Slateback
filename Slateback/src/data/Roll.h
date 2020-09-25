@@ -22,7 +22,7 @@ public:
 public:
 	// For manipulating and retrieving data from m_Shots vector
 	void PushNewShot();
-	Shot GetShot(unsigned int index);
+	Shot& GetShot(unsigned int index);
 
 	// Serializes m_Shots using Cereal library
 	template<class Archive>

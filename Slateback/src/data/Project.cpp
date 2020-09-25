@@ -48,7 +48,7 @@ void Project::PushBackCamera()
 	m_Cameras.push_back(camera);
 }
 
-Camera Project::GetCamera(unsigned int index)
+Camera& Project::GetCamera(unsigned int index)
 {
 	return m_Cameras[index];
 }

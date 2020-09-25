@@ -1,17 +1,17 @@
 #include "ProjectVector.h"
 
-void ProjectVector::PushBackProject()
+void ProjectVector::PushNewProject()
 {
 	Project project;
 	m_Projects.push_back(project);
 }
 
-Project ProjectVector::GetProject(size_t index)
+Project& ProjectVector::GetProject(size_t index)
 {
 	return m_Projects[index];
 }
 
-std::vector<Project> ProjectVector::GetVector()
+std::vector<Project>& ProjectVector::GetVector()
 {
 	return m_Projects;
 }

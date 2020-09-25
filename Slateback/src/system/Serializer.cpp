@@ -15,7 +15,9 @@ void Serializer::SerializeProjectVector(ProjectVector& pv)
 	xml.open("projects.xml");
 	{
 		cereal::XMLOutputArchive archive(xml);
-		archive(pv);
+
+		for (unsigned int i = 0; i < pv.GetVectorSize(); i++)
+			archive(pv.GetProject(i));
 	}
 	xml.close();
 }

@@ -28,7 +28,7 @@ public:
 	void PushBackCamera();
 
 	// Retrieves camera object at index
-	Camera GetCamera(unsigned int index);
+	Camera& GetCamera(unsigned int index);
 
 	// Retrieves number of cameras in m_Cameras vector
 	size_t GetCameraCount();

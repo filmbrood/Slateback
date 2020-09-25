@@ -38,7 +38,7 @@ public:
 public:
 	// For accessing Roll vector and data surrounding it
 	void PushNewRoll();
-	Roll GetRoll(unsigned int index);
+	Roll& GetRoll(unsigned int index);
 
 	// Returns size of m_Rolls vector
 	size_t GetRollCount();

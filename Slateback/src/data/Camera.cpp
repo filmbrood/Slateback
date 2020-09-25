@@ -58,7 +58,7 @@ void Camera::PushNewRoll()
 	m_Rolls.push_back(roll);
 }
 
-Roll Camera::GetRoll(unsigned int index)
+Roll& Camera::GetRoll(unsigned int index)
 {
 	return m_Rolls[index];
 }

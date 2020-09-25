@@ -14,7 +14,7 @@ void Controller::SetProjectVector(ProjectVector projects)
 
 void Controller::PushBackNewProject()
 {
-	m_Projects.PushBackProject();
+	m_Projects.PushNewProject();
 }
 
 Project Controller::GetActiveProject()

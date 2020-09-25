@@ -21,7 +21,7 @@ void Roll::PushNewShot()
 	m_Shots.push_back(shot);
 }
 
-Shot Roll::GetShot(unsigned int index)
+Shot& Roll::GetShot(unsigned int index)
 {
 	return m_Shots[index];
 }

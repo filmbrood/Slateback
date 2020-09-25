@@ -14,10 +14,10 @@ public:
 	~ProjectVector() {}
 
 public:
-	void PushBackProject();
-	Project GetProject(size_t index);
+	void PushNewProject();
+	Project& GetProject(size_t index);
 
-	std::vector<Project> GetVector();
+	std::vector<Project>& GetVector();
 	size_t GetVectorSize();
 
 	// Serializes m_Projects using Cereal library

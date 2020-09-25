@@ -117,16 +117,16 @@ void SerializerTest::OnInit()
 void SerializerTest::OnUpdate()
 {
 	ProjectVector pv;
-	pv.PushBackProject();
+	pv.PushNewProject();
 	
-	Project project = pv.GetProject(0);
+	Project& project = pv.GetProject(0);
 	project.SetTitle("Jack Jameson in: Out of the Sky");
 	project.SetCompany("Three and a Half Walls");
 	project.SetDirector("Joshua Key");
 	project.SetDP("Ryan Kneezle");
 	project.PushBackCamera();
 
-	Camera camera = project.GetCamera(0);
+	Camera& camera = project.GetCamera(0);
 	camera.SetModel("Panasonic GH4");
 	camera.SetID("A");
 	camera.SetLensSet("Panasonic Kit");
@@ -134,11 +134,11 @@ void SerializerTest::OnUpdate()
 	camera.SetCodec("H.264");
 	camera.PushNewRoll();
 
-	Roll roll = camera.GetRoll(0);
+	Roll& roll = camera.GetRoll(0);
 	roll.SetID("A001");
 	roll.PushNewShot();
 
-	Shot shot = roll.GetShot(0);
+	Shot& shot = roll.GetShot(0);
 	shot.SetScene("1A");
 	shot.SetTake("1");
 	shot.SetLens("35mm");
@@ -147,6 +147,39 @@ void SerializerTest::OnUpdate()
 	shot.SetColorTemp("5600K");
 	shot.SetFStop("2.8");
 	shot.SetFilter("N/A");
+
+	pv.PushNewProject();
+	Project& project2 = pv.GetProject(1);
+	project2.SetTitle("One of the Ones");
+	project2.SetCompany("One of the Ones Production, LLC");
+	project2.SetDirector("Nate Myers");
+	project2.SetDP("Thais Castralli");
+
+	project2.PushBackCamera();
+	Camera& camera2 = project2.GetCamera(0);
+	camera2.SetModel("Arri Alexa Mini");
+	camera2.SetID("A");
+	camera2.SetFilmBack("Super 35");
+	camera2.SetCodec("ProRes 4444 XQ");
+	camera2.SetLensSet("Zeiss Super Speeds");
+	camera2.SetCameraOperator("Thais Castralli");
+	camera2.SetFirstAssistantCamera("Dawn Moore");
+	camera2.SetSecondAssistantCamera("Makayla Hufziger");
+
+	camera2.PushNewRoll();
+	Roll& roll2 = camera2.GetRoll(0);
+	roll2.SetID("A008");
+	
+	roll.PushNewShot();
+	Shot& shot2 = roll.GetShot(0);
+	shot2.SetScene("7C");
+	shot2.SetTake("4");
+	shot2.SetFPS("29.97");
+	shot2.SetFStop("2.8");
+	shot2.SetLens("35mm");
+	shot2.SetISO("400");
+	shot2.SetColorTemp("4300K");
+	shot2.SetFilter("Glimmer Glass 1/2");
 
 	Serializer serializer;
 	serializer.SerializeProjectVector(pv);
