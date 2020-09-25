@@ -61,3 +61,11 @@ public:
 	void OnInit();
 	void OnUpdate();
 };
+
+// "print" argument class
+class Print : public Command
+{
+public:
+	void OnInit();
+	void OnUpdate();
+};

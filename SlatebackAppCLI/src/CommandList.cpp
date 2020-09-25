@@ -261,8 +261,17 @@ void Status::OnInit()
 void Status::OnUpdate()
 {
 	ProjectVector pv;
-	Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
-	Controller::Get().SetProjectVector(pv);
+
+	if (std::filesystem::exists("projects.xml"))
+	{
+		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
+		Controller::Get().SetProjectVector(pv);
+	}
+	else
+	{
+		std::cout << "No projects created." << std::endl;
+		return;
+	}
 
 	if (pv.GetVectorSize())
 	{
@@ -289,4 +298,30 @@ void Status::OnUpdate()
 	else
 		std::cout << "No projects created." << std::endl;
 
+}
+
+// "print" argument methods
+void Print::OnInit()
+{
+	SetInput("print");
+}
+
+void Print::OnUpdate()
+{
+	if (std::filesystem::exists("projects.xml"))
+	{
+		ProjectVector pv;
+		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
+		Controller::Get().SetProjectVector(pv);
+	}
+	else
+	{
+		std::cout << "No projects created - nothing to print." << std::endl;
+		return;
+	}
+
+	std::ofstream logfile;
+	logfile.open("CameraReport.txt");
+	logfile << Controller::Get().GetLogOutputString() << std::endl;
+	logfile.close();
 }
