@@ -1,74 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cereal>
 	<value0>
-		<m_Cameras size="dynamic">
+		<value0 size="dynamic">
 			<value0>
-				<m_Rolls size="dynamic">
+				<m_Cameras size="dynamic">
 					<value0>
-						<value0 size="dynamic">
+						<m_Rolls size="dynamic">
 							<value0>
-								<m_Scene>1A</m_Scene>
-								<m_Take>1</m_Take>
-								<m_FPS>23.98</m_FPS>
-								<m_Lens>35mm</m_Lens>
-								<m_FStop>2.8</m_FStop>
-								<m_ISO>800</m_ISO>
-								<m_ColorTemp>5600K</m_ColorTemp>
-								<m_Filter>N/A</m_Filter>
+								<value0 size="dynamic">
+									<value0>
+										<m_Scene>1A</m_Scene>
+										<m_Take>1</m_Take>
+										<m_FPS>23.98</m_FPS>
+										<m_Lens>35mm</m_Lens>
+										<m_FStop>2.8</m_FStop>
+										<m_ISO>800</m_ISO>
+										<m_ColorTemp>5600K</m_ColorTemp>
+										<m_Filter>N/A</m_Filter>
+									</value0>
+								</value0>
+								<value1>A001</value1>
 							</value0>
-						</value0>
-						<value1>A001</value1>
+						</m_Rolls>
+						<m_Model>Panasonic GH4</m_Model>
+						<m_FilmBack>Micro Four Thirds</m_FilmBack>
+						<m_Codec>H.264</m_Codec>
+						<m_ID>A</m_ID>
+						<m_LensSet>Panasonic Kit</m_LensSet>
+						<m_CameraOperator></m_CameraOperator>
+						<m_FirstAssistantCamera></m_FirstAssistantCamera>
+						<m_SecondAssistantCamera></m_SecondAssistantCamera>
 					</value0>
-				</m_Rolls>
-				<m_Model>Panasonic GH4</m_Model>
-				<m_FilmBack>Micro Four Thirds</m_FilmBack>
-				<m_Codec>H.264</m_Codec>
-				<m_ID>A</m_ID>
-				<m_LensSet>Panasonic Kit</m_LensSet>
-				<m_CameraOperator></m_CameraOperator>
-				<m_FirstAssistantCamera></m_FirstAssistantCamera>
-				<m_SecondAssistantCamera></m_SecondAssistantCamera>
+				</m_Cameras>
+				<m_Title>Jack Jameson in: Out of the Sky</m_Title>
+				<m_Company>Three and a Half Walls</m_Company>
+				<m_Director>Joshua Key</m_Director>
+				<m_DP>Ryan Kneezle</m_DP>
 			</value0>
-		</m_Cameras>
-		<m_Title>Jack Jameson in: Out of the Sky</m_Title>
-		<m_Company>Three and a Half Walls</m_Company>
-		<m_Director>Joshua Key</m_Director>
-		<m_DP>Ryan Kneezle</m_DP>
+			<value1>
+				<m_Cameras size="dynamic">
+					<value0>
+						<m_Rolls size="dynamic">
+							<value0>
+								<value0 size="dynamic">
+									<value0>
+										<m_Scene>7C</m_Scene>
+										<m_Take>4</m_Take>
+										<m_FPS>29.97</m_FPS>
+										<m_Lens>35mm</m_Lens>
+										<m_FStop>2.8</m_FStop>
+										<m_ISO>400</m_ISO>
+										<m_ColorTemp>4300K</m_ColorTemp>
+										<m_Filter>Glimmer Glass 1/2</m_Filter>
+									</value0>
+								</value0>
+								<value1>A008</value1>
+							</value0>
+						</m_Rolls>
+						<m_Model>Arri Alexa Mini</m_Model>
+						<m_FilmBack>Super 35</m_FilmBack>
+						<m_Codec>ProRes 4444 XQ</m_Codec>
+						<m_ID>A</m_ID>
+						<m_LensSet>Zeiss Super Speeds</m_LensSet>
+						<m_CameraOperator>Thais Castralli</m_CameraOperator>
+						<m_FirstAssistantCamera>Dawn Moore</m_FirstAssistantCamera>
+						<m_SecondAssistantCamera>Makayla Hufziger</m_SecondAssistantCamera>
+					</value0>
+				</m_Cameras>
+				<m_Title>One of the Ones</m_Title>
+				<m_Company>One of the Ones Production, LLC</m_Company>
+				<m_Director>Nate Myers</m_Director>
+				<m_DP>Thais Castralli</m_DP>
+			</value1>
+		</value0>
 	</value0>
-	<value1>
-		<m_Cameras size="dynamic">
-			<value0>
-				<m_Rolls size="dynamic">
-					<value0>
-						<value0 size="dynamic">
-							<value0>
-								<m_Scene>7C</m_Scene>
-								<m_Take>4</m_Take>
-								<m_FPS>29.97</m_FPS>
-								<m_Lens>35mm</m_Lens>
-								<m_FStop>2.8</m_FStop>
-								<m_ISO>400</m_ISO>
-								<m_ColorTemp>4300K</m_ColorTemp>
-								<m_Filter>Glimmer Glass 1/2</m_Filter>
-							</value0>
-						</value0>
-						<value1>A008</value1>
-					</value0>
-				</m_Rolls>
-				<m_Model>Arri Alexa Mini</m_Model>
-				<m_FilmBack>Super 35</m_FilmBack>
-				<m_Codec>ProRes 4444 XQ</m_Codec>
-				<m_ID>A</m_ID>
-				<m_LensSet>Zeiss Super Speeds</m_LensSet>
-				<m_CameraOperator>Thais Castralli</m_CameraOperator>
-				<m_FirstAssistantCamera>Dawn Moore</m_FirstAssistantCamera>
-				<m_SecondAssistantCamera>Makayla Hufziger</m_SecondAssistantCamera>
-			</value0>
-		</m_Cameras>
-		<m_Title>One of the Ones</m_Title>
-		<m_Company>One of the Ones Production, LLC</m_Company>
-		<m_Director>Nate Myers</m_Director>
-		<m_DP>Thais Castralli</m_DP>
-	</value1>
 </cereal>
 

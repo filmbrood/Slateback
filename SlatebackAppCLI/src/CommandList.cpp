@@ -109,6 +109,7 @@ void NewShot::OnUpdate()
 	std::cout << "Command not implemented" << std::endl;
 }
 
+// "serialtest" argument functions
 void SerializerTest::OnInit()
 {
 	SetInput("serialtest");
@@ -181,6 +182,20 @@ void SerializerTest::OnUpdate()
 	shot2.SetColorTemp("4300K");
 	shot2.SetFilter("Glimmer Glass 1/2");
 
-	Serializer serializer;
-	serializer.SerializeProjectVector(pv);
+	Serializer::Get().SerializeProjectVector(pv);
+}
+
+// "deserialtest" argument functions
+void DeserializerTest::OnInit()
+{
+	SetInput("deserialtest");
+}
+
+void DeserializerTest::OnUpdate()
+{
+	ProjectVector testVector = Serializer::Get().DeserializeProjectVector("projects.xml");
+
+	Controller::Get().SetProjectVector(testVector);
+	std::cout << Controller::Get().GetLogOutputString() << std::endl;
+	std::cin.get();
 }

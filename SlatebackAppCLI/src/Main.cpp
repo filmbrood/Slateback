@@ -12,6 +12,7 @@ int main(int argc, char** argv)
 	commands.PushNewCommand(new NewRoll);
 	commands.PushNewCommand(new NewShot);
 	commands.PushNewCommand(new SerializerTest);
+	commands.PushNewCommand(new DeserializerTest);
 	commands.InitAllCommands();
 
 	commands.OnUpdate(argv[1]);

@@ -2,16 +2,22 @@
 
 #include "../data/ProjectVector.h"
 
+// Singleton class for data serialization of the ProjectVector class
 class Serializer
 {
 public:
+	// Sends project vector data to .XML file named "projects.xml"
 	void SerializeProjectVector(ProjectVector& pv);
-	void SerializeProject(Project& project);
-	void SerializeCamera(Camera& camera);
-	void SerializeRoll(Roll& roll);
-	void SerializeShot(Shot& shot);
+	
+	// Retreives project vector data from .XML file
+	ProjectVector DeserializeProjectVector(std::string filepath);
 
-	//ProjectVector DeserializeProjectVector(std::string filepath);
+public:
+	// Returns singleton instance (s_Instance)
+	static Serializer& Get();
 
 private:
+	Serializer() {}
+
+	static Serializer s_Instance;
 };

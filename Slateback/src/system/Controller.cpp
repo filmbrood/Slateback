@@ -93,7 +93,7 @@ std::string Controller::GetProjectLogStringFromProjectVector(ProjectVector& proj
 
 	for (unsigned int i = 0; i < projectVector.GetVectorSize(); i++)
 	{
-		Project& activeProject = GetActiveProject();
+		Project& activeProject = projectVector.GetProject(i);
 
 		output += "Project Title: " + activeProject.GetTitle() + "\n";
 		output += "Company: " + activeProject.GetCompany() + "\n";

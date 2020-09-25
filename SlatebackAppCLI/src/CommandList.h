@@ -60,3 +60,10 @@ public:
 	void OnInit();
 	void OnUpdate();
 };
+
+class DeserializerTest : public Command
+{
+public:
+	void OnInit();
+	void OnUpdate();
+};

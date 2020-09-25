@@ -9,20 +9,35 @@
 #include <fstream>
 #include <sstream>
 
+Serializer Serializer::s_Instance;
+
 void Serializer::SerializeProjectVector(ProjectVector& pv)
 {
 	std::ofstream xml;
 	xml.open("projects.xml");
 	{
 		cereal::XMLOutputArchive archive(xml);
-
-		for (unsigned int i = 0; i < pv.GetVectorSize(); i++)
-			archive(pv.GetProject(i));
+		archive(pv);
 	}
 	xml.close();
 }
 
-//ProjectVector Serializer::DeserializeProjectVector(std::string filepath)
-//{
-//	
-//}
+ProjectVector Serializer::DeserializeProjectVector(std::string filepath)
+{
+	ProjectVector output;
+
+	std::ifstream xml;
+	xml.open("projects.xml");
+	{
+		cereal::XMLInputArchive archive(xml);
+
+		archive(output);
+	}
+
+	return output;
+}
+
+Serializer& Serializer::Get()
+{
+	return s_Instance;
+}
