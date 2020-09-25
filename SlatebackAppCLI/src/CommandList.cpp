@@ -1,6 +1,11 @@
 #include <iostream>
 #include <filesystem>
-#include <fstream>
+#include <sstream>
+
+#include <cereal/cereal.hpp>
+#include <cereal/archives/binary.hpp>
+#include <cereal/types/string.hpp>
+#include <cereal/types/vector.hpp>
 
 #include "slateback.h"
 #include "CommandList.h"
@@ -54,6 +59,9 @@ void NewProject::OnUpdate()
 	getline(std::cin, userinput);
 	Controller::Get().GetActiveProject()->SetTitle(userinput);
 
+	// Use project title to create new directory
+	std::string& projectTitle = Controller::Get().GetActiveProject()->GetTitle();
+
 	std::cout << "Project Company > ";
 	getline(std::cin, userinput);
 	Controller::Get().GetActiveProject()->SetCompany(userinput);
@@ -66,15 +74,13 @@ void NewProject::OnUpdate()
 	getline(std::cin, userinput);
 	Controller::Get().GetActiveProject()->SetDP(userinput);
 
-	// Use project title to create new directory
-	std::string& projectTitle = Controller::Get().GetActiveProject()->GetTitle();
-	std::filesystem::create_directory(projectTitle);
+	std::stringstream serialOutput;
+	{
+		cereal::BinaryOutputArchive archive(serialOutput);
 
-	// Create .ini file in active directory
-	std::ofstream configFileOutput;
-	configFileOutput.open(projectTitle + ".ini");
-	configFileOutput << projectTitle;
-	configFileOutput.close();
+		ProjectVector projects = Controller::Get().GetProjectVector();
+		archive(projects);
+	}
 
 	std::cout << std::endl;
 	std::cout << "Project details saved." << std::endl;

@@ -2,6 +2,16 @@
 
 Controller Controller::s_Instance;
 
+ProjectVector Controller::GetProjectVector()
+{
+	return m_Projects;
+}
+
+void Controller::SetProjectVector(ProjectVector projects)
+{
+	m_Projects = projects;
+}
+
 void Controller::PushBackNewProject()
 {
 	if (m_Projects.GetVectorSize() != 0)

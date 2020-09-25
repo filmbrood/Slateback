@@ -14,6 +14,13 @@ public:
 
 	size_t GetVectorSize();
 
+	// Serializes m_Projects using Cereal library
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(m_Projects);
+	}
+
 private:
 	std::vector<Project*> m_Projects;
 };

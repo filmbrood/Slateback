@@ -21,6 +21,13 @@ public:
 	void PushNewShot(Shot* shot);
 	Shot* GetShot(unsigned int index);
 
+	// Serializes m_Shots using Cereal library
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(m_Shots, m_ID);
+	}
+
 private:
 	std::string m_ID;
 

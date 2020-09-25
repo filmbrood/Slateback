@@ -1,5 +1,8 @@
 #pragma once
 
+#include <cereal/cereal.hpp>
+#include <cereal/archives/xml.hpp>
+
 #include "../data/ProjectVector.h"
 
 // Class that acts as controller for data system by directly manipulating the ProjectVector member m_Projects, and accessing all dataset classes from there.
@@ -10,6 +13,10 @@
 class Controller
 {
 public:
+	ProjectVector GetProjectVector();
+
+	void SetProjectVector(ProjectVector projects);
+
 	// Pushes back new project to the m_Projects ProjectVector.
 	void PushBackNewProject();
 
@@ -52,6 +59,13 @@ public:
 public:
 	// Returns singleton instance of Controller
 	static Controller& Get();
+
+	// Serializes m_Projects using Cereal library
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(m_Projects);
+	}
 
 private:
 	// Internal functions used in GetLogOutputString().

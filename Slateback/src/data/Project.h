@@ -34,6 +34,13 @@ public:
 	// Retrieves number of cameras in m_Cameras vector
 	size_t GetCameraCount();
 
+	// Serializes m_Cameras using Cereal library
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(m_Cameras, m_Title, m_Company, m_Director, m_DP);
+	}
+
 private:
 	std::string m_Title;
 	std::string m_Company;

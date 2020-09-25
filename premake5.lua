@@ -12,6 +12,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["slateback"] = "Slateback/include"
+IncludeDir["cereal"] = "Dependencies/cereal/include/"
 
 group ""
 project "Slateback"
@@ -34,7 +35,8 @@ project "Slateback"
 
 	includedirs
 	{
-		"Slateback/"
+		"Slateback/",
+		"%{IncludeDir.cereal}"
 	}
 
 	filter "configurations:Debug"
@@ -63,7 +65,8 @@ project "SlatebackAppCLI"
 
 	includedirs
 	{
-		"%{IncludeDir.slateback}"
+		"%{IncludeDir.slateback}",
+		"%{IncludeDir.cereal}"
 	}
 	
 	links

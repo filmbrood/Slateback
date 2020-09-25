@@ -23,6 +23,12 @@ public:
 	std::string GetColorTemp();
 	std::string GetFilter();
 
+	// Serializes data using Cereal library
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(m_Scene, m_Take, m_FPS, m_Lens, m_FStop, m_ISO, m_ColorTemp, m_Filter);
+	}
 private:
 	std::string m_Scene;
 	std::string m_Take;

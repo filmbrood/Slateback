@@ -39,6 +39,13 @@ public:
 	// Returns size of m_Rolls vector
 	size_t GetRollCount();
 
+	// Serializes m_Rolls using Cereal library
+	template<class Archive>
+	void serialize(Archive& archive)
+	{
+		archive(m_Rolls, m_Model, m_FilmBack, m_Codec, m_ID, m_LensSet, m_CameraOperator, m_FirstAssistantCamera, m_SecondAssistantCamera);
+	}
+
 private:
 	std::string m_Model;
 	std::string m_FilmBack;
