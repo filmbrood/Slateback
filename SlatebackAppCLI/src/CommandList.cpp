@@ -44,6 +44,13 @@ void NewProject::OnInit()
 
 void NewProject::OnUpdate()
 {
+	if (std::filesystem::exists("projects.xml"))
+	{
+		ProjectVector pv;
+		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
+		Controller::Get().SetProjectVector(pv);
+	}
+
 	std::string userinput;
 
 	Controller::Get().PushBackNewProject();
@@ -82,9 +89,17 @@ void NewCamera::OnUpdate()
 {
 	std::string userinput;
 
-	ProjectVector pv;
-	Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
-	Controller::Get().SetProjectVector(pv);
+	if (std::filesystem::exists("projects.xml"))
+	{
+		ProjectVector pv;
+		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
+		Controller::Get().SetProjectVector(pv);
+	}
+	else
+	{
+		std::cout << "Must create project first" << std::endl;
+		return;
+	}
 
 	Project& project = Controller::Get().GetActiveProject();
 	project.PushBackCamera();
@@ -135,7 +150,33 @@ void NewRoll::OnInit()
 
 void NewRoll::OnUpdate()
 {
-	std::cout << "Command not implemented" << std::endl;
+	if (std::filesystem::exists("projects.xml"))
+	{
+		ProjectVector pv;
+		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
+		Controller::Get().SetProjectVector(pv);
+	}
+	else
+	{
+		std::cout << "Must create project and camera first" << std::endl;
+	}
+
+	if (!Controller::Get().GetActiveProject().GetCameraCount())
+	{
+		std::cout << "Must create camera first" << std::endl;
+		return;
+	}
+
+	Camera& activeCamera = Controller::Get().GetActiveCamera();
+	activeCamera.PushNewRoll();
+
+	Roll& activeRoll = Controller::Get().GetActiveRoll();
+	std::string newRollID = activeCamera.GetID() + std::to_string(activeCamera.GetRollCount());
+	activeRoll.SetID(newRollID);
+
+	std::cout << "New roll created for camera " << activeCamera.GetID() << " - " << activeRoll.GetID() << std::endl;
+
+	Serializer::Get().SerializeProjectVector(Controller::Get().GetProjectVector());
 }
 
 // "shot" argument methods
@@ -146,7 +187,69 @@ void NewShot::OnInit()
 
 void NewShot::OnUpdate()
 {
-	std::cout << "Command not implemented" << std::endl;
+	if (std::filesystem::exists("projects.xml"))
+	{
+		ProjectVector pv;
+		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
+		Controller::Get().SetProjectVector(pv);
+	}
+	else
+	{
+		std::cout << "Must create project, camera, and roll first" << std::endl;
+	}
+
+	if (!Controller::Get().GetActiveProject().GetCameraCount())
+	{
+		std::cout << "Must create camera and roll first" << std::endl;
+		return;
+	}
+
+	if (!Controller::Get().GetActiveCamera().GetRollCount())
+	{
+		std::cout << "Must create roll first" << std::endl;
+		return;
+	}
+
+	std::string userinput;
+
+	Controller::Get().PushBackNewShot();
+	Shot& activeShot = Controller::Get().GetActiveShot();
+
+	std::cout << "New shot created for Roll " << Controller::Get().GetActiveRoll().GetID() << std::endl;
+
+	std::cout << "Scene > ";
+	getline(std::cin, userinput);
+	activeShot.SetScene(userinput);
+
+	std::cout << "Take > ";
+	getline(std::cin, userinput);
+	activeShot.SetTake(userinput);
+
+	std::cout << "FPS > ";
+	getline(std::cin, userinput);
+	activeShot.SetFPS(userinput);
+
+	std::cout << "Focal Length > ";
+	getline(std::cin, userinput);
+	activeShot.SetLens(userinput);
+
+	std::cout << "f/Stop > ";
+	getline(std::cin, userinput);
+	activeShot.SetFStop(userinput);
+
+	std::cout << "ISO > ";
+	getline(std::cin, userinput);
+	activeShot.SetFStop(userinput);
+
+	std::cout << "Color Temp > ";
+	getline(std::cin, userinput);
+	activeShot.SetColorTemp(userinput);
+
+	std::cout << "Filter > ";
+	getline(std::cin, userinput);
+	activeShot.SetFilter(userinput);
+
+	Serializer::Get().SerializeProjectVector(Controller::Get().GetProjectVector());
 }
 
 // "status" argument methods
@@ -173,8 +276,9 @@ void Status::OnUpdate()
 
 			if (activeCamera.GetRollCount())
 			{
-				//Roll& activeRoll = Controller::Get().GetActiveRoll();
-				//std::cout << "Active Roll: " << activeRoll.GetID() << std::endl;
+				Roll& activeRoll = Controller::Get().GetActiveRoll();
+				std::cout << "Active Roll: " << activeRoll.GetID() << std::endl;
+				std::cout << "Shot count: " << activeRoll.GetShotCount() << std::endl;
 			}
 			else
 				std::cout << "No rolls created." << std::endl;

@@ -19,6 +19,7 @@ project "Slateback"
 	location "Valkry"
 	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
 	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -51,10 +52,11 @@ project "SlatebackAppCLI"
 	location "SlatebackAppCLI"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
 	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	targetname ("slateback")
+	targetname ("slt")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
