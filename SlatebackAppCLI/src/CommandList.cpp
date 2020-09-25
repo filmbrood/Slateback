@@ -1,11 +1,12 @@
 #include <iostream>
 #include <filesystem>
-#include <sstream>
+#include <fstream>
 
 #include <cereal/cereal.hpp>
-#include <cereal/archives/binary.hpp>
+#include <cereal/archives/json.hpp>
 #include <cereal/types/string.hpp>
 #include <cereal/types/vector.hpp>
+#include <cereal/types/memory.hpp>
 
 #include "slateback.h"
 #include "CommandList.h"
@@ -52,38 +53,41 @@ void NewProject::OnUpdate()
 	std::string userinput;
 
 	Controller::Get().PushBackNewProject();
-	std::cout << "New project created." << std::endl;
 
-	// User input for project detail member variables
+	std::unique_ptr<Project> activeProject = std::make_unique<Project>(Controller::Get().GetActiveProject());
+
+	// For debug - displays size of ProjectVector in Controller class
+	std::cout << Controller::Get().GetProjectVector().GetVectorSize() << std::endl;
+
+	// User inputs project title before creation
 	std::cout << "Project Title > ";
 	getline(std::cin, userinput);
-	Controller::Get().GetActiveProject()->SetTitle(userinput);
+	activeProject->SetTitle(userinput);
+	std::cout << "New project created - " << activeProject->GetTitle() << std::endl;
 
-	// Use project title to create new directory
-	std::string& projectTitle = Controller::Get().GetActiveProject()->GetTitle();
-
+	// User inputs rest of details
 	std::cout << "Project Company > ";
 	getline(std::cin, userinput);
-	Controller::Get().GetActiveProject()->SetCompany(userinput);
+	activeProject->SetCompany(userinput);
 
 	std::cout << "Project Director > ";
 	getline(std::cin, userinput);
-	Controller::Get().GetActiveProject()->SetDirector(userinput);
+	activeProject->SetDirector(userinput);
 
 	std::cout << "Project DP > ";
 	getline(std::cin, userinput);
-	Controller::Get().GetActiveProject()->SetDP(userinput);
+	activeProject->SetDP(userinput);
 
-	std::stringstream serialOutput;
+	std::ofstream serialOutput;
+	serialOutput.open(activeProject->GetTitle() + ".json");
 	{
-		cereal::BinaryOutputArchive archive(serialOutput);
-
-		ProjectVector projects = Controller::Get().GetProjectVector();
-		archive(projects);
+		cereal::JSONOutputArchive archive(serialOutput);
+		archive(CEREAL_NVP(activeProject));
 	}
+	serialOutput.close();
 
 	std::cout << std::endl;
-	std::cout << "Project details saved." << std::endl;
+	std::cout << "Project details saved to projects.json" << std::endl;
 }
 
 // "camera" argument functions

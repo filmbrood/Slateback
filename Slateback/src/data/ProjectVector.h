@@ -2,16 +2,19 @@
 
 #include <vector>
 
+#include <cereal/cereal.hpp>
+#include <cereal/types/vector.hpp>
+#include <cereal/types/string.hpp>
+
 #include "Project.h"
 
 // Container class for a vector of Project object pointers.
 class ProjectVector
 {
 public:
-	void PushBack(Project* p);
+	void PushBackProject();
 
-	Project* GetProject(unsigned int index);
-
+	std::vector<Project> GetVector();
 	size_t GetVectorSize();
 
 	// Serializes m_Projects using Cereal library
@@ -22,5 +25,6 @@ public:
 	}
 
 private:
-	std::vector<Project*> m_Projects;
+
+	std::vector<Project> m_Projects;
 };

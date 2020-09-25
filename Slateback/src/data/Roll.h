@@ -1,6 +1,11 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
+
+#include <cereal/cereal.hpp>
+#include <cereal/types/vector.hpp>
+#include <cereal/types/string.hpp>
 
 #include "Shot.h"
 
@@ -8,9 +13,6 @@
 class Roll
 {
 public:
-	// Deconstructor for deleting m_Shots pointer vector
-	~Roll();
-
 	void SetID(std::string id);
 	std::string GetID();
 
@@ -18,8 +20,8 @@ public:
 
 public:
 	// For manipulating and retrieving data from m_Shots vector
-	void PushNewShot(Shot* shot);
-	Shot* GetShot(unsigned int index);
+	void PushNewShot();
+	Shot GetShot(unsigned int index);
 
 	// Serializes m_Shots using Cereal library
 	template<class Archive>
@@ -29,7 +31,8 @@ public:
 	}
 
 private:
+
 	std::string m_ID;
 
-	std::vector<Shot*> m_Shots;
+	std::vector<Shot> m_Shots;
 };

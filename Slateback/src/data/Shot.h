@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
 
+#include <cereal/cereal.hpp>
+#include <cereal/types/vector.hpp>
+#include <cereal/types/string.hpp>
+
 // Data class for details regarding shot objects, which are contained within the Roll class as pointers in vector.
 class Shot
 {
@@ -27,9 +31,10 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(m_Scene, m_Take, m_FPS, m_Lens, m_FStop, m_ISO, m_ColorTemp, m_Filter);
+		archive(CEREAL_NVP(m_Scene), CEREAL_NVP(m_Take), CEREAL_NVP(m_FPS), CEREAL_NVP(m_Lens), CEREAL_NVP(m_FStop), CEREAL_NVP(m_ISO), CEREAL_NVP(m_ColorTemp), CEREAL_NVP(m_Filter));
 	}
 private:
+
 	std::string m_Scene;
 	std::string m_Take;
 	std::string m_FPS;

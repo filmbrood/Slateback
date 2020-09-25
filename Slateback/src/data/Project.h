@@ -2,15 +2,16 @@
 #include <string>
 #include <vector>
 
+#include <cereal/cereal.hpp>
+#include <cereal/types/vector.hpp>
+#include <cereal/types/string.hpp>
+
 #include "Camera.h"
 
 // Data class containing Project details, which also acts as a container for a vector of Camera object pointers.
 class Project
 {
 public:
-	// Deconstructor for deleting m_Cameras pointer vector
-	~Project();
-
 	void SetTitle(std::string title);
 	void SetCompany(std::string company);
 	void SetDirector(std::string director);
@@ -22,14 +23,11 @@ public:
 	std::string GetDP();
 
 public:
-	// Runs command line setup for applying values to all member variables
-	void ProjectSetup();
+	// Pushes new camera object into m_Cameras vector
+	void PushBackCamera();
 
-	// Pushes new pointer camera object into m_Cameras vector
-	void PushBackCamera(Camera* c);
-
-	// Retrieves pointer to camera object at index
-	Camera* GetCamera(unsigned int index);
+	// Retrieves camera object at index
+	Camera GetCamera(unsigned int index);
 
 	// Retrieves number of cameras in m_Cameras vector
 	size_t GetCameraCount();
@@ -38,15 +36,16 @@ public:
 	template<class Archive>
 	void serialize(Archive& archive)
 	{
-		archive(m_Cameras, m_Title, m_Company, m_Director, m_DP);
+		archive(CEREAL_NVP(m_Cameras), CEREAL_NVP(m_Title), CEREAL_NVP(m_Company), CEREAL_NVP(m_Director), CEREAL_NVP(m_DP));
 	}
 
 private:
+
 	std::string m_Title;
 	std::string m_Company;
 	std::string m_Director;
 	std::string m_DP;
 
 	// Dynamic array with cameras per project
-	std::vector<Camera*> m_Cameras;
+	std::vector<Camera> m_Cameras;
 };

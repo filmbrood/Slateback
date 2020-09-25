@@ -1,6 +1,11 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
+
+#include <cereal/cereal.hpp>
+#include <cereal/types/vector.hpp>
+#include <cereal/types/string.hpp>
 
 #include "Roll.h"
 
@@ -8,9 +13,6 @@
 class Camera
 {
 public:
-	// Deconstructor for deleting m_Rolls pointer vector
-	~Camera();
-
 	// Functions for manipulating all member variables
 	void SetModel(std::string model);
 	void SetFilmBack(std::string filmback);
@@ -33,8 +35,8 @@ public:
 
 public:
 	// For accessing Roll vector and data surrounding it
-	void PushNewRoll(Roll* roll);
-	Roll* GetRoll(unsigned int index);
+	void PushNewRoll();
+	Roll GetRoll(unsigned int index);
 
 	// Returns size of m_Rolls vector
 	size_t GetRollCount();
@@ -47,6 +49,7 @@ public:
 	}
 
 private:
+
 	std::string m_Model;
 	std::string m_FilmBack;
 	std::string m_Codec;
@@ -56,5 +59,5 @@ private:
 	std::string m_FirstAssistantCamera;
 	std::string m_SecondAssistantCamera;
 
-	std::vector<Roll*> m_Rolls;
+	std::vector<Roll> m_Rolls;
 };

@@ -2,12 +2,6 @@
 
 #include "Camera.h"
 
-Camera::~Camera()
-{
-	for (unsigned int i = 0; i < m_Rolls.size(); i++)
-		delete m_Rolls[i];
-}
-
 void Camera::SetModel(std::string model)
 {
 	m_Model = model;
@@ -58,12 +52,13 @@ std::string Camera::GetLensSet()
 	return m_LensSet;
 }
 
-void Camera::PushNewRoll(Roll* roll)
+void Camera::PushNewRoll()
 {
+	Roll roll;
 	m_Rolls.push_back(roll);
 }
 
-Roll* Camera::GetRoll(unsigned int index)
+Roll Camera::GetRoll(unsigned int index)
 {
 	return m_Rolls[index];
 }
