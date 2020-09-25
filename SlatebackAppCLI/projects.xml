@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cereal>
+	<value0>
+		<value0 size="dynamic">
+			<value0>
+				<m_Cameras size="dynamic"/>
+				<m_Title></m_Title>
+				<m_Company></m_Company>
+				<m_Director></m_Director>
+				<m_DP></m_DP>
+			</value0>
+		</value0>
+	</value0>
+	<value1>
+		<m_Cameras size="dynamic"/>
+		<m_Title></m_Title>
+		<m_Company></m_Company>
+		<m_Director></m_Director>
+		<m_DP></m_DP>
+	</value1>
+</cereal>
+

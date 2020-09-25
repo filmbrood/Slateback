@@ -6,6 +6,11 @@ void ProjectVector::PushBackProject()
 	m_Projects.push_back(project);
 }
 
+Project ProjectVector::GetProject(size_t index)
+{
+	return m_Projects[index];
+}
+
 std::vector<Project> ProjectVector::GetVector()
 {
 	return m_Projects;

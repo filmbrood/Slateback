@@ -11,6 +11,7 @@ int main(int argc, char** argv)
 	commands.PushNewCommand(new NewCamera);
 	commands.PushNewCommand(new NewRoll);
 	commands.PushNewCommand(new NewShot);
+	commands.PushNewCommand(new SerializerTest);
 	commands.InitAllCommands();
 
 	commands.OnUpdate(argv[1]);

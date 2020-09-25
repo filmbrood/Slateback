@@ -4,14 +4,16 @@
 #include <memory>
 
 #include <cereal/cereal.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/string.hpp>
 
 #include "Roll.h"
 
 // Data class containing Camera details, which also acts as a container class for a vector of Roll object pointers.
 class Camera
 {
+public:
+	Camera() {}
+	~Camera() {}
+
 public:
 	// Functions for manipulating all member variables
 	void SetModel(std::string model);
@@ -43,10 +45,7 @@ public:
 
 	// Serializes m_Rolls using Cereal library
 	template<class Archive>
-	void serialize(Archive& archive)
-	{
-		archive(m_Rolls, m_Model, m_FilmBack, m_Codec, m_ID, m_LensSet, m_CameraOperator, m_FirstAssistantCamera, m_SecondAssistantCamera);
-	}
+	void serialize(Archive& archive);
 
 private:
 
@@ -61,3 +60,9 @@ private:
 
 	std::vector<Roll> m_Rolls;
 };
+
+template<class Archive>
+inline void Camera::serialize(Archive& archive)
+{
+	archive(CEREAL_NVP(m_Rolls), CEREAL_NVP(m_Model), CEREAL_NVP(m_FilmBack), CEREAL_NVP(m_Codec), CEREAL_NVP(m_ID), CEREAL_NVP(m_LensSet), CEREAL_NVP(m_CameraOperator), CEREAL_NVP(m_FirstAssistantCamera), CEREAL_NVP(m_SecondAssistantCamera));
+}

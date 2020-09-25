@@ -1,13 +1,14 @@
 #pragma once
 #include <string>
-
 #include <cereal/cereal.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/string.hpp>
 
 // Data class for details regarding shot objects, which are contained within the Roll class as pointers in vector.
 class Shot
 {
+public:
+	Shot() {}
+	~Shot() {}
+
 public:
 	void SetScene(std::string scene);
 	void SetTake(std::string take);
@@ -29,10 +30,8 @@ public:
 
 	// Serializes data using Cereal library
 	template<class Archive>
-	void serialize(Archive& archive)
-	{
-		archive(CEREAL_NVP(m_Scene), CEREAL_NVP(m_Take), CEREAL_NVP(m_FPS), CEREAL_NVP(m_Lens), CEREAL_NVP(m_FStop), CEREAL_NVP(m_ISO), CEREAL_NVP(m_ColorTemp), CEREAL_NVP(m_Filter));
-	}
+	void serialize(Archive& archive);
+
 private:
 
 	std::string m_Scene;
@@ -44,3 +43,9 @@ private:
 	std::string m_ColorTemp;
 	std::string m_Filter;
 };
+
+template<class Archive>
+inline void Shot::serialize(Archive& archive)
+{
+	archive(CEREAL_NVP(m_Scene), CEREAL_NVP(m_Take), CEREAL_NVP(m_FPS), CEREAL_NVP(m_Lens), CEREAL_NVP(m_FStop), CEREAL_NVP(m_ISO), CEREAL_NVP(m_ColorTemp), CEREAL_NVP(m_Filter));
+}

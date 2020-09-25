@@ -53,3 +53,10 @@ public:
 	void OnInit();
 	void OnUpdate();
 };
+
+class SerializerTest : public Command
+{
+public:
+	void OnInit();
+	void OnUpdate();
+};

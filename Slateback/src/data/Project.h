@@ -1,16 +1,17 @@
 #pragma once
 #include <string>
 #include <vector>
-
 #include <cereal/cereal.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/string.hpp>
 
 #include "Camera.h"
 
 // Data class containing Project details, which also acts as a container for a vector of Camera object pointers.
 class Project
 {
+public:
+	Project() {}
+	~Project() {}
+
 public:
 	void SetTitle(std::string title);
 	void SetCompany(std::string company);
@@ -34,10 +35,7 @@ public:
 
 	// Serializes m_Cameras using Cereal library
 	template<class Archive>
-	void serialize(Archive& archive)
-	{
-		archive(CEREAL_NVP(m_Cameras), CEREAL_NVP(m_Title), CEREAL_NVP(m_Company), CEREAL_NVP(m_Director), CEREAL_NVP(m_DP));
-	}
+	void serialize(Archive& archive);
 
 private:
 
@@ -49,3 +47,9 @@ private:
 	// Dynamic array with cameras per project
 	std::vector<Camera> m_Cameras;
 };
+
+template<class Archive>
+inline void Project::serialize(Archive& archive)
+{
+	archive(CEREAL_NVP(m_Cameras), CEREAL_NVP(m_Title), CEREAL_NVP(m_Company), CEREAL_NVP(m_Director), CEREAL_NVP(m_DP));
+}

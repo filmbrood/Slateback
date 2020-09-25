@@ -4,14 +4,15 @@
 #include <memory>
 
 #include <cereal/cereal.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/string.hpp>
 
 #include "Shot.h"
 
 // Data class containing Roll details, which also acts as a container class for a vector of Shot objects.
 class Roll
 {
+public:
+	Roll() {}
+	~Roll() {}
 public:
 	void SetID(std::string id);
 	std::string GetID();
@@ -25,10 +26,7 @@ public:
 
 	// Serializes m_Shots using Cereal library
 	template<class Archive>
-	void serialize(Archive& archive)
-	{
-		archive(m_Shots, m_ID);
-	}
+	void serialize(Archive& archive);
 
 private:
 
@@ -36,3 +34,9 @@ private:
 
 	std::vector<Shot> m_Shots;
 };
+
+template<class Archive>
+inline void Roll::serialize(Archive& archive)
+{
+	archive(m_Shots, m_ID);
+}

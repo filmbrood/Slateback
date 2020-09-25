@@ -2,12 +2,6 @@
 #include <filesystem>
 #include <fstream>
 
-#include <cereal/cereal.hpp>
-#include <cereal/archives/json.hpp>
-#include <cereal/types/string.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/memory.hpp>
-
 #include "slateback.h"
 #include "CommandList.h"
 
@@ -56,9 +50,6 @@ void NewProject::OnUpdate()
 
 	std::unique_ptr<Project> activeProject = std::make_unique<Project>(Controller::Get().GetActiveProject());
 
-	// For debug - displays size of ProjectVector in Controller class
-	std::cout << Controller::Get().GetProjectVector().GetVectorSize() << std::endl;
-
 	// User inputs project title before creation
 	std::cout << "Project Title > ";
 	getline(std::cin, userinput);
@@ -78,16 +69,11 @@ void NewProject::OnUpdate()
 	getline(std::cin, userinput);
 	activeProject->SetDP(userinput);
 
-	std::ofstream serialOutput;
-	serialOutput.open(activeProject->GetTitle() + ".json");
-	{
-		cereal::JSONOutputArchive archive(serialOutput);
-		archive(CEREAL_NVP(activeProject));
-	}
-	serialOutput.close();
+	//Serializer fileout;
+	//fileout.SerializeProjectVector(Controller::Get().GetProjectVector());
 
-	std::cout << std::endl;
-	std::cout << "Project details saved to projects.json" << std::endl;
+	//std::cout << std::endl;
+	//std::cout << "Project details saved to projects.json" << std::endl;
 }
 
 // "camera" argument functions
@@ -98,8 +84,7 @@ void NewCamera::OnInit()
 
 void NewCamera::OnUpdate()
 {
-	Controller::Get().PushBackNewCamera();
-	std::cout << "New camera added." << std::endl;
+	std::cout << "Command not implemented" << std::endl;
 }
 
 // "roll" argument functions
@@ -110,8 +95,7 @@ void NewRoll::OnInit()
 
 void NewRoll::OnUpdate()
 {
-	Controller::Get().PushBackNewRoll();
-	std::cout << "New roll added." << std::endl;
+	std::cout << "Command not implemented" << std::endl;
 }
 
 // "shot" argument functions
@@ -122,6 +106,48 @@ void NewShot::OnInit()
 
 void NewShot::OnUpdate()
 {
-	Controller::Get().PushBackNewShot();
-	std::cout << "New shot added." << std::endl;
+	std::cout << "Command not implemented" << std::endl;
+}
+
+void SerializerTest::OnInit()
+{
+	SetInput("serialtest");
+}
+
+void SerializerTest::OnUpdate()
+{
+	ProjectVector pv;
+	pv.PushBackProject();
+	
+	Project project = pv.GetProject(0);
+	project.SetTitle("Jack Jameson in: Out of the Sky");
+	project.SetCompany("Three and a Half Walls");
+	project.SetDirector("Joshua Key");
+	project.SetDP("Ryan Kneezle");
+	project.PushBackCamera();
+
+	Camera camera = project.GetCamera(0);
+	camera.SetModel("Panasonic GH4");
+	camera.SetID("A");
+	camera.SetLensSet("Panasonic Kit");
+	camera.SetFilmBack("Micro Four Thirds");
+	camera.SetCodec("H.264");
+	camera.PushNewRoll();
+
+	Roll roll = camera.GetRoll(0);
+	roll.SetID("A001");
+	roll.PushNewShot();
+
+	Shot shot = roll.GetShot(0);
+	shot.SetScene("1A");
+	shot.SetTake("1");
+	shot.SetLens("35mm");
+	shot.SetFPS("23.98");
+	shot.SetISO("800");
+	shot.SetColorTemp("5600K");
+	shot.SetFStop("2.8");
+	shot.SetFilter("N/A");
+
+	Serializer serializer;
+	serializer.SerializeProjectVector(pv);
 }

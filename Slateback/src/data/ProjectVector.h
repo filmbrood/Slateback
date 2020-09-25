@@ -3,8 +3,6 @@
 #include <vector>
 
 #include <cereal/cereal.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/string.hpp>
 
 #include "Project.h"
 
@@ -12,19 +10,27 @@
 class ProjectVector
 {
 public:
+	ProjectVector() {}
+	~ProjectVector() {}
+
+public:
 	void PushBackProject();
+	Project GetProject(size_t index);
 
 	std::vector<Project> GetVector();
 	size_t GetVectorSize();
 
 	// Serializes m_Projects using Cereal library
 	template<class Archive>
-	void serialize(Archive& archive)
-	{
-		archive(m_Projects);
-	}
+	void serialize(Archive& archive);
 
 private:
 
 	std::vector<Project> m_Projects;
 };
+
+template<class Archive>
+inline void ProjectVector::serialize(Archive& archive)
+{
+	archive(m_Projects);
+}
