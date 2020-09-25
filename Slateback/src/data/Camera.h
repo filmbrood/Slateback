@@ -43,6 +43,10 @@ public:
 	// Returns size of m_Rolls vector
 	size_t GetRollCount();
 
+	// Sets and returns m_ActiveRollIndex
+	void SetActiveRollIndex(unsigned int index);
+	unsigned int GetActiveRollIndex();
+
 	// Serializes m_Rolls using Cereal library
 	template<class Archive>
 	void serialize(Archive& archive);
@@ -57,6 +61,8 @@ private:
 	std::string m_CameraOperator;
 	std::string m_FirstAssistantCamera;
 	std::string m_SecondAssistantCamera;
+
+	unsigned int m_ActiveRollIndex = 0;
 
 	std::vector<Roll> m_Rolls;
 };

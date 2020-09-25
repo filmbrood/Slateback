@@ -24,6 +24,10 @@ public:
 	void PushNewShot();
 	Shot& GetShot(unsigned int index);
 
+	// Sets and returns m_ActiveShotIndex
+	void SetActiveShotIndex(unsigned int index);
+	unsigned int GetActiveShotIndex();
+
 	// Serializes m_Shots using Cereal library
 	template<class Archive>
 	void serialize(Archive& archive);
@@ -31,6 +35,8 @@ public:
 private:
 
 	std::string m_ID;
+
+	unsigned int m_ActiveShotIndex = 0;
 
 	std::vector<Shot> m_Shots;
 };

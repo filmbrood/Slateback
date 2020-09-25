@@ -14,15 +14,15 @@
 class Controller
 {
 public:
-	ProjectVector GetProjectVector();
+	ProjectVector& GetProjectVector();
 
-	void SetProjectVector(ProjectVector projects);
+	void SetProjectVector(ProjectVector& projects);
 
 	// Pushes back new project to the m_Projects ProjectVector.
 	void PushBackNewProject();
 
 	// Returns project from m_Projects at the current m_ActiveProjectIndex value.
-	Project GetActiveProject();
+	Project& GetActiveProject();
 
 	// Sets a new value for m_ActiveProjectIndex.
 	void ChangeActiveProject(unsigned int index);
@@ -31,7 +31,7 @@ public:
 	void PushBackNewCamera();
 
 	// Returns camera pointer from vector within the Project in m_Projects at the current m_ActiveProjectIndex value.
-	Camera GetActiveCamera();
+	Camera& GetActiveCamera();
 
 	// Sets a new value for m_ActiveCameraIndex.
 	void ChangeActiveCamera(unsigned int index);
@@ -40,7 +40,7 @@ public:
 	void PushBackNewRoll();
 
 	// Returns a pointer to the roll at the current m_ActiveRollIndex value.
-	Roll GetActiveRoll();
+	Roll& GetActiveRoll();
 
 	// Sets a new value for m_ActiveRollIndex.
 	void ChangeActiveRoll(unsigned int index);
@@ -49,7 +49,7 @@ public:
 	void PushBackNewShot();
 
 	// Returns the shot at the current m_ActiveShotIndex value.
-	Shot GetActiveShot();
+	Shot& GetActiveShot();
 
 	// Sets a new value for m_ActiveShotIndex.
 	void ChangeActiveShot(unsigned int index);
@@ -76,15 +76,8 @@ private:
 	std::string GetShotLogStringFromRoll(Roll& roll);
 
 private:
-	friend class cereal::access;
+	ProjectVector m_Projects;
 
 	Controller() {}
 	static Controller s_Instance;
-
-	ProjectVector m_Projects;
-
-	unsigned int m_ActiveProjectIndex = 0;
-	unsigned int m_ActiveCameraIndex = 0;
-	unsigned int m_ActiveRollIndex = 0;
-	unsigned int m_ActiveShotIndex = 0;
 };

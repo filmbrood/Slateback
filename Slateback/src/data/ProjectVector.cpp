@@ -20,3 +20,13 @@ size_t ProjectVector::GetVectorSize()
 {
 	return m_Projects.size();
 }
+
+void ProjectVector::SetActiveProjectIndex(unsigned int index)
+{
+	m_ActiveProjectIndex = index;
+}
+
+unsigned int ProjectVector::GetActiveProjectIndex()
+{
+	return m_ActiveProjectIndex;
+}

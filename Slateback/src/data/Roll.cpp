@@ -25,3 +25,13 @@ Shot& Roll::GetShot(unsigned int index)
 {
 	return m_Shots[index];
 }
+
+void Roll::SetActiveShotIndex(unsigned int index)
+{
+	m_ActiveShotIndex = index;
+}
+
+unsigned int Roll::GetActiveShotIndex()
+{
+	return m_ActiveShotIndex;
+}

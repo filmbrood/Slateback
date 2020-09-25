@@ -68,6 +68,16 @@ size_t Camera::GetRollCount()
 	return m_Rolls.size();
 }
 
+void Camera::SetActiveRollIndex(unsigned int index)
+{
+	m_ActiveRollIndex = index;
+}
+
+unsigned int Camera::GetActiveRollIndex()
+{
+	return m_ActiveRollIndex;
+}
+
 void Camera::SetCameraOperator(std::string camop)
 {
 	m_CameraOperator = camop;

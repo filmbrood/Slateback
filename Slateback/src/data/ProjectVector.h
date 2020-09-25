@@ -20,11 +20,15 @@ public:
 	std::vector<Project>& GetVector();
 	size_t GetVectorSize();
 
+	void SetActiveProjectIndex(unsigned int index);
+	unsigned int GetActiveProjectIndex();
+
 	// Serializes m_Projects using Cereal library
 	template<class Archive>
 	void serialize(Archive& archive);
 
 private:
+	unsigned int m_ActiveProjectIndex = 0;
 
 	std::vector<Project> m_Projects;
 };
@@ -32,5 +36,5 @@ private:
 template<class Archive>
 inline void ProjectVector::serialize(Archive& archive)
 {
-	archive(m_Projects);
+	archive(CEREAL_NVP(m_Projects), CEREAL_NVP(m_ActiveProjectIndex));
 }

@@ -48,32 +48,28 @@ void NewProject::OnUpdate()
 
 	Controller::Get().PushBackNewProject();
 
-	std::unique_ptr<Project> activeProject = std::make_unique<Project>(Controller::Get().GetActiveProject());
+	Project& activeProject = Controller::Get().GetActiveProject();
 
 	// User inputs project title before creation
 	std::cout << "Project Title > ";
 	getline(std::cin, userinput);
-	activeProject->SetTitle(userinput);
-	std::cout << "New project created - " << activeProject->GetTitle() << std::endl;
+	activeProject.SetTitle(userinput);
+	std::cout << "New project created - " << activeProject.GetTitle() << std::endl;
 
 	// User inputs rest of details
 	std::cout << "Project Company > ";
 	getline(std::cin, userinput);
-	activeProject->SetCompany(userinput);
+	activeProject.SetCompany(userinput);
 
 	std::cout << "Project Director > ";
 	getline(std::cin, userinput);
-	activeProject->SetDirector(userinput);
+	activeProject.SetDirector(userinput);
 
 	std::cout << "Project DP > ";
 	getline(std::cin, userinput);
-	activeProject->SetDP(userinput);
+	activeProject.SetDP(userinput);
 
-	//Serializer fileout;
-	//fileout.SerializeProjectVector(Controller::Get().GetProjectVector());
-
-	//std::cout << std::endl;
-	//std::cout << "Project details saved to projects.json" << std::endl;
+	Serializer::Get().SerializeProjectVector(Controller::Get().GetProjectVector());
 }
 
 // "camera" argument functions
@@ -84,7 +80,51 @@ void NewCamera::OnInit()
 
 void NewCamera::OnUpdate()
 {
-	std::cout << "Command not implemented" << std::endl;
+	std::string userinput;
+
+	ProjectVector pv;
+	Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
+	Controller::Get().SetProjectVector(pv);
+
+	Project& project = Controller::Get().GetActiveProject();
+	project.PushBackCamera();
+
+	Camera& camera = Controller::Get().GetActiveCamera();
+	std::cout << "New camera created for " << project.GetTitle() << std::endl;
+
+	std::cout << "Camera Model > ";
+	getline(std::cin, userinput);
+	camera.SetModel(userinput);
+
+	std::cout << "Camera ID (A, B, C) > ";
+	getline(std::cin, userinput);
+	camera.SetID(userinput);
+
+	std::cout << "Camera Sensor Size > ";
+	getline(std::cin, userinput);
+	camera.SetFilmBack(userinput);
+	
+	std::cout << "Camera Codec > ";
+	getline(std::cin, userinput);
+	camera.SetCodec(userinput);
+
+	std::cout << "Camera Lens Set > ";
+	getline(std::cin, userinput);
+	camera.SetLensSet(userinput);
+
+	std::cout << "Camera Operator > ";
+	getline(std::cin, userinput);
+	camera.SetCameraOperator(userinput);
+
+	std::cout << "Camera 1st AC > ";
+	getline(std::cin, userinput);
+	camera.SetFirstAssistantCamera(userinput);
+
+	std::cout << "Camera 2nd AC >";
+	getline(std::cin, userinput);
+	camera.SetSecondAssistantCamera(userinput);
+	
+	Serializer::Get().SerializeProjectVector(Controller::Get().GetProjectVector());
 }
 
 // "roll" argument functions
@@ -193,7 +233,8 @@ void DeserializerTest::OnInit()
 
 void DeserializerTest::OnUpdate()
 {
-	ProjectVector testVector = Serializer::Get().DeserializeProjectVector("projects.xml");
+	ProjectVector testVector;
+	Serializer::Get().DeserializeProjectVector(testVector, "projects.xml");
 
 	Controller::Get().SetProjectVector(testVector);
 	std::cout << Controller::Get().GetLogOutputString() << std::endl;

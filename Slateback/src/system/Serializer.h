@@ -10,7 +10,7 @@ public:
 	void SerializeProjectVector(ProjectVector& pv);
 	
 	// Retreives project vector data from .XML file
-	ProjectVector DeserializeProjectVector(std::string filepath);
+	void DeserializeProjectVector(ProjectVector& pv, std::string filepath);
 
 public:
 	// Returns singleton instance (s_Instance)

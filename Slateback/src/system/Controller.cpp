@@ -2,12 +2,12 @@
 
 Controller Controller::s_Instance;
 
-ProjectVector Controller::GetProjectVector()
+ProjectVector& Controller::GetProjectVector()
 {
 	return m_Projects;
 }
 
-void Controller::SetProjectVector(ProjectVector projects)
+void Controller::SetProjectVector(ProjectVector& projects)
 {
 	m_Projects = projects;
 }
@@ -17,15 +17,14 @@ void Controller::PushBackNewProject()
 	m_Projects.PushNewProject();
 }
 
-Project Controller::GetActiveProject()
+Project& Controller::GetActiveProject()
 {
-	std::vector<Project>& buffer = m_Projects.GetVector();
-	return buffer[m_ActiveProjectIndex];
+	return m_Projects.GetProject(m_Projects.GetActiveProjectIndex());
 }
 
 void Controller::ChangeActiveProject(unsigned int index)
 {
-	m_ActiveProjectIndex = index;
+	m_Projects.SetActiveProjectIndex(index);
 }
 
 void Controller::PushBackNewCamera()
@@ -33,44 +32,47 @@ void Controller::PushBackNewCamera()
 	GetActiveProject().PushBackCamera();
 }
 
-Camera Controller::GetActiveCamera()
+Camera& Controller::GetActiveCamera()
 {
-	return GetActiveProject().GetCamera(m_ActiveCameraIndex);
+	unsigned int index = GetActiveProject().GetActiveCameraIndex();
+	return GetActiveProject().GetCamera(index);
 }
 
 void Controller::ChangeActiveCamera(unsigned int index)
 {
-	m_ActiveCameraIndex = index;
+	GetActiveProject().SetActiveCameraIndex(index);
 }
 
 void Controller::PushBackNewRoll()
 {
-	GetActiveProject().GetCamera(m_ActiveCameraIndex).PushNewRoll();
+	GetActiveCamera().PushNewRoll();
 }
 
-Roll Controller::GetActiveRoll()
+Roll& Controller::GetActiveRoll()
 {
-	return GetActiveProject().GetCamera(m_ActiveCameraIndex).GetRoll(m_ActiveRollIndex);
+	unsigned int index = GetActiveCamera().GetActiveRollIndex();
+	return GetActiveCamera().GetRoll(index);
 }
 
 void Controller::ChangeActiveRoll(unsigned int index)
 {
-	m_ActiveRollIndex = index;
+	GetActiveCamera().SetActiveRollIndex(index);
 }
 
 void Controller::PushBackNewShot()
 {
-	GetActiveProject().GetCamera(m_ActiveCameraIndex).GetRoll(m_ActiveRollIndex).PushNewShot();
+	GetActiveRoll().PushNewShot();
 }
 
-Shot Controller::GetActiveShot()
+Shot& Controller::GetActiveShot()
 {
-	return GetActiveProject().GetCamera(m_ActiveCameraIndex).GetRoll(m_ActiveRollIndex).GetShot(m_ActiveShotIndex);
+	unsigned int index = GetActiveRoll().GetActiveShotIndex();
+	return GetActiveRoll().GetShot(index);
 }
 
 void Controller::ChangeActiveShot(unsigned int index)
 {
-	m_ActiveShotIndex = index;
+	GetActiveRoll().SetActiveShotIndex(index);
 }
 
 std::string Controller::GetLogOutputString()

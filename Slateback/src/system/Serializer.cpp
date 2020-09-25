@@ -22,19 +22,15 @@ void Serializer::SerializeProjectVector(ProjectVector& pv)
 	xml.close();
 }
 
-ProjectVector Serializer::DeserializeProjectVector(std::string filepath)
+void Serializer::DeserializeProjectVector(ProjectVector& pv, std::string filepath)
 {
-	ProjectVector output;
-
 	std::ifstream xml;
 	xml.open("projects.xml");
 	{
 		cereal::XMLInputArchive archive(xml);
 
-		archive(output);
+		archive(pv);
 	}
-
-	return output;
 }
 
 Serializer& Serializer::Get()

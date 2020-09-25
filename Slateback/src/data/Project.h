@@ -33,6 +33,10 @@ public:
 	// Retrieves number of cameras in m_Cameras vector
 	size_t GetCameraCount();
 
+	// Sets and returns m_ActiveCameraIndex
+	void SetActiveCameraIndex(unsigned int index);
+	unsigned int GetActiveCameraIndex();
+
 	// Serializes m_Cameras using Cereal library
 	template<class Archive>
 	void serialize(Archive& archive);
@@ -43,6 +47,8 @@ private:
 	std::string m_Company;
 	std::string m_Director;
 	std::string m_DP;
+
+	unsigned int m_ActiveCameraIndex = 0;
 
 	// Dynamic array with cameras per project
 	std::vector<Camera> m_Cameras;
