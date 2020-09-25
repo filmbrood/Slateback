@@ -17,6 +17,9 @@ size_t Roll::GetShotCount()
 
 void Roll::PushNewShot()
 {
+	if (m_Shots.size() > 0)
+		m_ActiveShotIndex++;
+
 	Shot shot;
 	m_Shots.push_back(shot);
 }

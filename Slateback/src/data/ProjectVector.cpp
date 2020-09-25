@@ -2,6 +2,9 @@
 
 void ProjectVector::PushNewProject()
 {
+	if (m_Projects.size() > 0)
+		m_ActiveProjectIndex++;
+
 	Project project;
 	m_Projects.push_back(project);
 }

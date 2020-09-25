@@ -44,6 +44,9 @@ std::string Project::GetDP()
 
 void Project::PushBackCamera()
 {
+	if (m_Cameras.size() > 0)
+		m_ActiveCameraIndex++;
+
 	Camera camera;
 	m_Cameras.push_back(camera);
 }

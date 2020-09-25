@@ -54,14 +54,8 @@ public:
 	void OnUpdate();
 };
 
-class SerializerTest : public Command
-{
-public:
-	void OnInit();
-	void OnUpdate();
-};
-
-class DeserializerTest : public Command
+// "status" argument class
+class Status : public Command
 {
 public:
 	void OnInit();

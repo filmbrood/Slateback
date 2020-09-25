@@ -54,8 +54,12 @@ std::string Camera::GetLensSet()
 
 void Camera::PushNewRoll()
 {
+	if (m_Rolls.size() > 0)
+		m_ActiveRollIndex++;
+
 	Roll roll;
 	m_Rolls.push_back(roll);
+
 }
 
 Roll& Camera::GetRoll(unsigned int index)
