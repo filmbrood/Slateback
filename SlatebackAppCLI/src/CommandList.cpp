@@ -239,7 +239,7 @@ void NewShot::OnUpdate()
 
 	std::cout << "ISO > ";
 	getline(std::cin, userinput);
-	activeShot.SetFStop(userinput);
+	activeShot.SetISO(userinput);
 
 	std::cout << "Color Temp > ";
 	getline(std::cin, userinput);

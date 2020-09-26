@@ -79,6 +79,7 @@ std::string Controller::GetLogOutputString()
 {
 	std::string output;
 
+	output += "Camera Report Generated with Slateback\n";
 	output += GetProjectLogStringFromProjectVector(m_Projects);
 
 	return output;
