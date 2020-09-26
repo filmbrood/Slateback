@@ -44,5 +44,5 @@ private:
 template<class Archive>
 inline void Roll::serialize(Archive& archive)
 {
-	archive(m_Shots, m_ID);
+	archive(CEREAL_NVP(m_ActiveShotIndex), CEREAL_NVP(m_Shots), CEREAL_NVP(m_ID));
 }

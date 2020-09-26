@@ -70,5 +70,5 @@ private:
 template<class Archive>
 inline void Camera::serialize(Archive& archive)
 {
-	archive(CEREAL_NVP(m_Rolls), CEREAL_NVP(m_Model), CEREAL_NVP(m_FilmBack), CEREAL_NVP(m_Codec), CEREAL_NVP(m_ID), CEREAL_NVP(m_LensSet), CEREAL_NVP(m_CameraOperator), CEREAL_NVP(m_FirstAssistantCamera), CEREAL_NVP(m_SecondAssistantCamera));
+	archive(CEREAL_NVP(m_ActiveRollIndex), CEREAL_NVP(m_Rolls), CEREAL_NVP(m_Model), CEREAL_NVP(m_FilmBack), CEREAL_NVP(m_Codec), CEREAL_NVP(m_ID), CEREAL_NVP(m_LensSet), CEREAL_NVP(m_CameraOperator), CEREAL_NVP(m_FirstAssistantCamera), CEREAL_NVP(m_SecondAssistantCamera));
 }

@@ -57,5 +57,5 @@ private:
 template<class Archive>
 inline void Project::serialize(Archive& archive)
 {
-	archive(CEREAL_NVP(m_Cameras), CEREAL_NVP(m_Title), CEREAL_NVP(m_Company), CEREAL_NVP(m_Director), CEREAL_NVP(m_DP));
+	archive(CEREAL_NVP(m_ActiveCameraIndex), CEREAL_NVP(m_Cameras), CEREAL_NVP(m_Title), CEREAL_NVP(m_Company), CEREAL_NVP(m_Director), CEREAL_NVP(m_DP));
 }
