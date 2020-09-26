@@ -62,3 +62,5 @@ ISO > 640
 Color Temp > 5600K
 Filter > Prom Mist 1/8
 ```
+
+When finished, `slt print` prints out a camera report based on the active project to `CameraReport.txt`.
