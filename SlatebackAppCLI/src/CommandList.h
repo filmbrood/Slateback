@@ -69,3 +69,11 @@ public:
 	void OnInit();
 	void OnUpdate();
 };
+
+// "help" argument class
+class Help : public Command
+{
+public:
+	void OnInit();
+	void OnUpdate();
+};

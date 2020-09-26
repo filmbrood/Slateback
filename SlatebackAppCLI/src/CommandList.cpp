@@ -135,7 +135,7 @@ void NewCamera::OnUpdate()
 	getline(std::cin, userinput);
 	camera.SetFirstAssistantCamera(userinput);
 
-	std::cout << "Camera 2nd AC >";
+	std::cout << "Camera 2nd AC > ";
 	getline(std::cin, userinput);
 	camera.SetSecondAssistantCamera(userinput);
 	
@@ -324,4 +324,14 @@ void Print::OnUpdate()
 	logfile.open("CameraReport.txt");
 	logfile << Controller::Get().GetLogOutputString() << std::endl;
 	logfile.close();
+}
+
+void Help::OnInit()
+{
+	SetInput("help");
+}
+
+void Help::OnUpdate()
+{
+	std::cout << "Use 'slt project' to create a new project, then 'slt camera' to create a camera, 'slt roll' to create a roll, and finally 'slt shot' to create a new shot" << std::endl;
 }

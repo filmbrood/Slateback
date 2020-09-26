@@ -13,6 +13,7 @@ int main(int argc, char** argv)
 	commands.PushNewCommand(new NewShot);
 	commands.PushNewCommand(new Status);
 	commands.PushNewCommand(new Print);
+	commands.PushNewCommand(new Help);
 	commands.InitAllCommands();
 
 	commands.OnUpdate(argv[1]);
