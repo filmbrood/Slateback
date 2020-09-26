@@ -16,7 +16,7 @@ IncludeDir["cereal"] = "Dependencies/cereal/include/"
 
 group ""
 project "Slateback"
-	location "Valkry"
+	location "Slateback"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
