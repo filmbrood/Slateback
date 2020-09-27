@@ -6,18 +6,13 @@
 class Serializer
 {
 public:
-	// Sends project vector data to .XML file named "projects.xml"
-	void SerializeProjectVector(ProjectVector& pv);
-	
-	// Retreives project vector data from .XML file
-	void DeserializeProjectVector(ProjectVector& pv, std::string filepath);
+	void SerializeProjectVector(ProjectVector& pv); // Sends project vector data to .XML file named "projects.xml"
+	void DeserializeProjectVector(ProjectVector& pv, std::string filepath); // Retreives project vector data from .XML file
 
 public:
-	// Returns singleton instance (s_Instance)
-	static Serializer& Get();
+	static Serializer& Get(); // Returns singleton instance (s_Instance)
 
 private:
 	Serializer() {}
-
 	static Serializer s_Instance;
 };

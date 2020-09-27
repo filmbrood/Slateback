@@ -6,11 +6,7 @@
 class Camera
 {
 public:
-	Camera() {}
-	~Camera() {}
-
-public:
-	// Functions for manipulating all member variables
+	// Methods for setting member variables. Names are self-explanatory.
 	void SetModel(std::string model);
 	void SetFilmBack(std::string filmback);
 	void SetCodec(std::string setcodec);
@@ -20,7 +16,7 @@ public:
 	void SetFirstAssistantCamera(std::string firstAC);
 	void SetSecondAssistantCamera(std::string secondAC);
 
-	// Functions for retrieving member variables
+	// Methods for returning member variables.
 	std::string GetModel();
 	std::string GetFilmBack();
 	std::string GetCodec();
@@ -31,23 +27,16 @@ public:
 	std::string GetSecondAssistantCamera();
 
 public:
-	// For accessing Roll vector and data surrounding it
-	void PushNewRoll();
-	Roll& GetRoll(unsigned int index);
+	void PushNewRoll(); // Pushes a Roll instance to m_Rolls
+	Roll& GetRoll(unsigned int index); // Returns reference to Roll instance from m_Rolls at specified index
+	size_t GetRollCount(); // Returns size of m_Rolls vector
+	void SetActiveRollIndex(unsigned int index); // Sets value of m_ActiveRollIndex
+	unsigned int GetActiveRollIndex(); // Returns m_ActiveRollIndex
 
-	// Returns size of m_Rolls vector
-	size_t GetRollCount();
-
-	// Sets and returns m_ActiveRollIndex
-	void SetActiveRollIndex(unsigned int index);
-	unsigned int GetActiveRollIndex();
-
-	// Serializes m_Rolls using Cereal library
 	template<class Archive>
-	void serialize(Archive& archive);
+	void serialize(Archive& archive); // Serializes class using Cereal library
 
 private:
-
 	std::string m_Model;
 	std::string m_FilmBack;
 	std::string m_Codec;
@@ -56,9 +45,7 @@ private:
 	std::string m_CameraOperator;
 	std::string m_FirstAssistantCamera;
 	std::string m_SecondAssistantCamera;
-
 	unsigned int m_ActiveRollIndex = 0;
-
 	std::vector<Roll> m_Rolls;
 };
 

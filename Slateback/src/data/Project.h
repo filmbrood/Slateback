@@ -6,51 +6,35 @@
 class Project
 {
 public:
-	Project() {}
-	~Project() {}
-
-public:
+	// Methods for setting member variables. Names are self-explanatory.
 	void SetTitle(std::string title);
 	void SetCompany(std::string company);
 	void SetDirector(std::string director);
 	void SetDP(std::string dop);
 	
+	// Methods for returning member variables.
 	std::string GetTitle();
 	std::string GetCompany();
 	std::string GetDirector();
 	std::string GetDP();
 
 public:
-	// Pushes new camera object into m_Cameras vector
-	void PushBackCamera();
+	void PushBackCamera(); // Pushes a Camera instance into m_Cameras vector
+	Camera& GetCamera(unsigned int index); // Returns reference to camera instance from m_Cameras at specified index
+	size_t GetCameraCount(); // Returns size of m_Cameras
+	void SetActiveCameraIndex(unsigned int index); // Sets value for m_ActiveCameraIndex
+	unsigned int GetActiveCameraIndex(); // Returns m_ActiveCameraIndex
+	Camera& GetActiveCamera(); // Returns reference to Camera instance from m_Cameras at current m_ActiveCameraIndex value
 
-	// Retrieves camera object at index
-	Camera& GetCamera(unsigned int index);
-
-	// Retrieves number of cameras in m_Cameras vector
-	size_t GetCameraCount();
-
-	// Sets and returns m_ActiveCameraIndex
-	void SetActiveCameraIndex(unsigned int index);
-	unsigned int GetActiveCameraIndex();
-
-	// Returns reference to active camera
-	Camera& GetActiveCamera();
-
-	// Serializes m_Cameras using Cereal library
 	template<class Archive>
-	void serialize(Archive& archive);
+	void serialize(Archive& archive); // Serializes class using Cereal library
 
 private:
-
 	std::string m_Title;
 	std::string m_Company;
 	std::string m_Director;
 	std::string m_DP;
-
 	unsigned int m_ActiveCameraIndex = 0;
-
-	// Dynamic array with cameras per project
 	std::vector<Camera> m_Cameras;
 };
 

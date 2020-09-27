@@ -2,6 +2,8 @@
 
 #include "Roll.h"
 
+// Roll methods. See Roll.h for more info.
+
 void Roll::SetID(std::string id)
 {
 	m_ID = id;

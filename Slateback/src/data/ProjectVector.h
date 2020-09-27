@@ -10,28 +10,19 @@
 class ProjectVector
 {
 public:
-	ProjectVector() {}
-	~ProjectVector() {}
+	void PushNewProject(); // Pushes Project instance to m_Projects.
+	Project& GetProject(size_t index); // Returns reference to Project instance in m_Projects.
+	std::vector<Project>& GetVector(); // Returns reference to m_Projects.
+	size_t GetVectorSize(); // Returns size of m_Projects.
+	void SetActiveProjectIndex(unsigned int index); // Sets value for m_ActiveProjectIndex.
+	unsigned int GetActiveProjectIndex(); // Returns m_ActiveProjectIndex.
+	Project& GetActiveProject(); // Returns Project instance from m_Projects at current m_ActiveProjectIndex value.
 
-public:
-	void PushNewProject();
-	Project& GetProject(size_t index);
-
-	std::vector<Project>& GetVector();
-	size_t GetVectorSize();
-
-	void SetActiveProjectIndex(unsigned int index);
-	unsigned int GetActiveProjectIndex();
-
-	Project& GetActiveProject();
-
-	// Serializes m_Projects using Cereal library
 	template<class Archive>
-	void serialize(Archive& archive);
+	void serialize(Archive& archive); // Serializes class using Cereal library
 
 private:
 	unsigned int m_ActiveProjectIndex = 0;
-
 	std::vector<Project> m_Projects;
 };
 

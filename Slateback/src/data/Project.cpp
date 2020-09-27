@@ -2,6 +2,8 @@
 
 #include "Project.h"
 
+// Project methods. See Project.h for more info.
+
 void Project::SetTitle(std::string title)
 {
 	m_Title = title;

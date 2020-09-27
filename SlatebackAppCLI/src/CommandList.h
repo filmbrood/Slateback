@@ -5,100 +5,84 @@
 
 #include "Command.h"
 
-// Acts as a container class for a vector of command pointers. Runs as a Singleton.
+// Acts as a container class for a vector of command pointers. Runs as a Singleton, access with CommandList::Get().
 class CommandList
 {
 public:
-	// Deconstructor for deleting m_Commands vector
-	~CommandList();
-
 	void PushNewCommand(Command* command);
-	void InitAllCommands();
-	void ClearCommandsFromMemory();
+	void InitAllCommands(); // Runs the OnInit() method in all classes within the m_Commands vector
+	void ClearCommandsFromMemory(); // Deletes heap-allocated Command classes within m_Commands vector, then clears the vector
+	size_t GetCommandCount(); // Returns size of m_Commands
+	Command* GetCommand(unsigned int index); // Returns command from m_Commands at specificed index
 
-	size_t GetCommandCount();
-	Command* GetCommand(unsigned int index);
-
-	void OnUpdate(const char* argv);
-
-	static CommandList& Get();
+	void OnUpdate(const char* argv); // Pushes commands to vector, initializes them, and chooses which one to run based on argv argument.
+	static CommandList& Get(); // Returns static singleton s_Instance.
 
 private:
 	CommandList() {}
-
 	static CommandList s_Instance;
-
 	std::vector<Command*> m_Commands;
 };
 
 // Declare new command classes here. Must define the input string and description with SetInput() and SetDesc() when defining the OnInit() method, and must define the OnUpdate() method.
 
-// "project" argument class
-class NewProject : public Command
+class NewProject : public Command // "project" argument class
 {
 public:
 	void OnInit();
 	void OnUpdate();
 };
 
-// "camera" argument class
-class NewCamera : public Command
+class NewCamera : public Command // "camera" argument class
 {
 public:
 	void OnInit();
 	void OnUpdate();
 };
 
-// "roll" argument class
-class NewRoll : public Command
+class NewRoll : public Command // "roll" argument class
 {
 public:
 	void OnInit();
 	void OnUpdate();
 };
 
-// "shot" argument class
-class NewShot : public Command
+class NewShot : public Command // "shot" argument class
 { 
 public:
 	void OnInit();
 	void OnUpdate();
 };
 
-// "status" argument class
-class Status : public Command
+class Status : public Command // "status" argument class
 {
 public:
 	void OnInit();
 	void OnUpdate();
 };
 
-// "print" argument class
-class Print : public Command
+class Print : public Command // "print" argument class
 {
 public:
 	void OnInit();
 	void OnUpdate();
 };
 
-// "help" argument class
-class Help : public Command
+class Help : public Command // "help" argument class
 {
 public:
 	void OnInit();
 	void OnUpdate();
 };
 
-// "changeproject" argument class
-class ChangeProject : public Command
+class ChangeProject : public Command // "changeproject" argument class
 {
 public:
 	void OnInit();
 	void OnUpdate();
 };
 
-// "changeroll" argument class
-class ChangeCamera : public Command
+class ChangeCamera : public Command // "changecamera" argument class
 {
 public:
 	void OnInit();

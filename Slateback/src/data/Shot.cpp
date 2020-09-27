@@ -2,6 +2,8 @@
 
 #include "Shot.h"
 
+// Shot methods. See Shot.h for more info.
+
 void Shot::SetScene(std::string scene)
 {
 	m_Scene = scene;

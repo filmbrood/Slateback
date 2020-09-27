@@ -1,5 +1,7 @@
 #pragma once
 
+// Precompiled header for Slateback static library.
+
 #include <iostream>
 #include <fstream>
 #include <vector>

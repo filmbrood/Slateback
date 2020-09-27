@@ -1,6 +1,6 @@
 #pragma once
 
-// Data class for details regarding shot objects, which are contained within the Roll class as pointers in vector.
+// Data class for details regarding shot objects, which are contained within the Roll class in a vector.
 class Shot
 {
 public:
@@ -8,6 +8,7 @@ public:
 	~Shot() {}
 
 public:
+	// Methods for setting member variables. Names are self-explanatory.
 	void SetScene(std::string scene);
 	void SetTake(std::string take);
 	void SetFPS(std::string fps);
@@ -17,6 +18,7 @@ public:
 	void SetColorTemp(std::string colortemp);
 	void SetFilter(std::string filter);
 
+	// Methods for returning member variables.
 	std::string GetScene();
 	std::string GetTake();
 	std::string GetFPS();
@@ -26,12 +28,10 @@ public:
 	std::string GetColorTemp();
 	std::string GetFilter();
 
-	// Serializes data using Cereal library
 	template<class Archive>
-	void serialize(Archive& archive);
+	void serialize(Archive& archive); // Serializes class using Cereal library
 
 private:
-
 	std::string m_Scene;
 	std::string m_Take;
 	std::string m_FPS;

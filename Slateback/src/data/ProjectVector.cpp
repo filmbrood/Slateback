@@ -2,6 +2,8 @@
 
 #include "ProjectVector.h"
 
+// ProjectVector methods. See ProjectVector.h for more info.
+
 void ProjectVector::PushNewProject()
 {
 	if (m_Projects.size() > 0)

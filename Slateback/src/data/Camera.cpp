@@ -2,6 +2,8 @@
 
 #include "Camera.h"
 
+// Camera methods. See Camera.h for more info.
+
 void Camera::SetModel(std::string model)
 {
 	m_Model = model;

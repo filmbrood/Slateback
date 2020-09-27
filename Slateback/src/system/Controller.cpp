@@ -2,8 +2,9 @@
 
 #include "Controller.h"
 
-Controller Controller::s_Instance;
+Controller Controller::s_Instance; // Initialize singleton instance of Controller
 
+// Controller methods. See Controller.h for more info.
 ProjectVector& Controller::GetProjectVector()
 {
 	return m_Projects;

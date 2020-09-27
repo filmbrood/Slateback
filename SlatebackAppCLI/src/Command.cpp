@@ -1,5 +1,6 @@
 #include "Command.h"
 
+// Command class methods. See Command.h for more info.
 std::string Command::GetInput()
 {
 	return m_Input;
