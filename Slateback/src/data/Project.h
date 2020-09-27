@@ -1,7 +1,4 @@
 #pragma once
-#include <string>
-#include <vector>
-#include <cereal/cereal.hpp>
 
 #include "Camera.h"
 
@@ -36,6 +33,9 @@ public:
 	// Sets and returns m_ActiveCameraIndex
 	void SetActiveCameraIndex(unsigned int index);
 	unsigned int GetActiveCameraIndex();
+
+	// Returns reference to active camera
+	Camera& GetActiveCamera();
 
 	// Serializes m_Cameras using Cereal library
 	template<class Archive>

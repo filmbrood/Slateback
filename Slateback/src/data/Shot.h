@@ -1,6 +1,4 @@
 #pragma once
-#include <string>
-#include <cereal/cereal.hpp>
 
 // Data class for details regarding shot objects, which are contained within the Roll class as pointers in vector.
 class Shot

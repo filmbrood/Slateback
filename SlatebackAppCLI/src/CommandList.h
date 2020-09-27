@@ -16,7 +16,7 @@ public:
 	void InitAllCommands();
 	void ClearCommandsFromMemory();
 
-	unsigned int GetCommandCount();
+	size_t GetCommandCount();
 	Command* GetCommand(unsigned int index);
 
 	void OnUpdate(const char* argv);
@@ -91,6 +91,14 @@ public:
 
 // "changeproject" argument class
 class ChangeProject : public Command
+{
+public:
+	void OnInit();
+	void OnUpdate();
+};
+
+// "changeroll" argument class
+class ChangeCamera : public Command
 {
 public:
 	void OnInit();

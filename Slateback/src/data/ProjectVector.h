@@ -23,6 +23,8 @@ public:
 	void SetActiveProjectIndex(unsigned int index);
 	unsigned int GetActiveProjectIndex();
 
+	Project& GetActiveProject();
+
 	// Serializes m_Projects using Cereal library
 	template<class Archive>
 	void serialize(Archive& archive);
@@ -36,5 +38,5 @@ private:
 template<class Archive>
 inline void ProjectVector::serialize(Archive& archive)
 {
-	archive(CEREAL_NVP(m_Projects), CEREAL_NVP(m_ActiveProjectIndex));
+	archive(CEREAL_NVP(m_ActiveProjectIndex), CEREAL_NVP(m_Projects));
 }

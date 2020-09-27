@@ -63,9 +63,15 @@ size_t Project::GetCameraCount()
 
 void Project::SetActiveCameraIndex(unsigned int index)
 {
+	m_ActiveCameraIndex = index;
 }
 
 unsigned int Project::GetActiveCameraIndex()
 {
 	return 0;
+}
+
+Camera& Project::GetActiveCamera()
+{
+	return m_Cameras[m_ActiveCameraIndex];
 }

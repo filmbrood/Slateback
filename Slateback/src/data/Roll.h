@@ -1,9 +1,4 @@
 #pragma once
-#include <string>
-#include <vector>
-#include <memory>
-
-#include <cereal/cereal.hpp>
 
 #include "Shot.h"
 

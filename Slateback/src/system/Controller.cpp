@@ -21,7 +21,7 @@ void Controller::PushBackNewProject()
 
 Project& Controller::GetActiveProject()
 {
-	return m_Projects.GetProject(m_Projects.GetActiveProjectIndex());
+	return m_Projects.GetActiveProject();
 }
 
 void Controller::ChangeActiveProject(unsigned int index)
@@ -36,8 +36,7 @@ void Controller::PushBackNewCamera()
 
 Camera& Controller::GetActiveCamera()
 {
-	unsigned int index = GetActiveProject().GetActiveCameraIndex();
-	return GetActiveProject().GetCamera(index);
+	return GetActiveProject().GetActiveCamera();
 }
 
 void Controller::ChangeActiveCamera(unsigned int index)
@@ -120,14 +119,14 @@ std::string Controller::GetCameraLogStringFromProject(Project& project)
 	{
 		Camera& activeCamera = project.GetCamera(i);
 
-		output += "[CAMERA " + activeCamera.GetID() + "]\n";
-		output += "Model: " + activeCamera.GetModel() + "\n";
-		output += "Sensor Size: " + activeCamera.GetFilmBack() + "\n";
-		output += "Codec: " + activeCamera.GetCodec() + "\n";
-		output += "Lens Set: " + activeCamera.GetLensSet() + "\n";
-		output += "Operator: " + activeCamera.GetCameraOperator() + "\n";
-		output += "First Assistant: " + activeCamera.GetFirstAssistantCamera() + "\n";
-		output += "Second Assistant: " + activeCamera.GetSecondAssistantCamera() + "\n";
+		output += "  [CAMERA " + activeCamera.GetID() + "]\n";
+		output += "  Model: " + activeCamera.GetModel() + "\n";
+		output += "  Sensor Size: " + activeCamera.GetFilmBack() + "\n";
+		output += "  Codec: " + activeCamera.GetCodec() + "\n";
+		output += "  Lens Set: " + activeCamera.GetLensSet() + "\n";
+		output += "  Operator: " + activeCamera.GetCameraOperator() + "\n";
+		output += "  First Assistant: " + activeCamera.GetFirstAssistantCamera() + "\n";
+		output += "  Second Assistant: " + activeCamera.GetSecondAssistantCamera() + "\n";
 		output += "\n";
 
 		output += GetRollLogStringFromCamera(activeCamera);
@@ -144,8 +143,8 @@ std::string Controller::GetRollLogStringFromCamera(Camera& camera)
 	{
 		Roll& activeRoll = camera.GetRoll(i);
 
-		output += "[ROLL " + activeRoll.GetID() + "]\n";
-		output += "Shot Count: " + std::to_string(activeRoll.GetShotCount()) + "\n";
+		output += "    [ROLL " + activeRoll.GetID() + "]\n";
+		output += "    Shot Count: " + std::to_string(activeRoll.GetShotCount()) + "\n";
 		output += "\n";
 
 		output += GetShotLogStringFromRoll(activeRoll);
@@ -162,13 +161,13 @@ std::string Controller::GetShotLogStringFromRoll(Roll& roll)
 	{
 		Shot& activeShot = roll.GetShot(i);
 
-		output += "[SHOT " + activeShot.GetScene() + "-" + activeShot.GetTake() + "]\n";
-		output += "FPS: " + activeShot.GetFPS() + "\n";
-		output += "Focal Length: " + activeShot.GetLens() + "\n";
-		output += "f/Stop: " + activeShot.GetFStop() + "\n";
-		output += "ISO: " + activeShot.GetISO() + "\n";
-		output += "Color Temp: " + activeShot.GetColorTemp() + "\n";
-		output += "Filter: " + activeShot.GetFilter() + "\n";
+		output += "      [SHOT " + activeShot.GetScene() + "-" + activeShot.GetTake() + "]\n";
+		output += "      FPS: " + activeShot.GetFPS() + "\n";
+		output += "      Focal Length: " + activeShot.GetLens() + "\n";
+		output += "      f/Stop: " + activeShot.GetFStop() + "\n";
+		output += "      ISO: " + activeShot.GetISO() + "\n";
+		output += "      Color Temp: " + activeShot.GetColorTemp() + "\n";
+		output += "      Filter: " + activeShot.GetFilter() + "\n";
 		output += "\n";
 	}
 

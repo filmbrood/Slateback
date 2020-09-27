@@ -35,3 +35,8 @@ unsigned int ProjectVector::GetActiveProjectIndex()
 {
 	return m_ActiveProjectIndex;
 }
+
+Project& ProjectVector::GetActiveProject()
+{
+	return m_Projects[m_ActiveProjectIndex];
+}

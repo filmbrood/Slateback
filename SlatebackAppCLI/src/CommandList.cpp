@@ -31,7 +31,7 @@ void CommandList::ClearCommandsFromMemory()
 	m_Commands.clear();
 }
 
-unsigned int CommandList::GetCommandCount()
+size_t CommandList::GetCommandCount()
 {
 	return m_Commands.size();
 }
@@ -45,11 +45,27 @@ void CommandList::OnUpdate(const char* argv)
 {
 	std::string userinput = argv;
 
+	CommandList::Get().PushNewCommand(new NewProject);
+	CommandList::Get().PushNewCommand(new NewCamera);
+	CommandList::Get().PushNewCommand(new NewRoll);
+	CommandList::Get().PushNewCommand(new NewShot);
+	CommandList::Get().PushNewCommand(new Status);
+	CommandList::Get().PushNewCommand(new Print);
+	CommandList::Get().PushNewCommand(new Help);
+	CommandList::Get().PushNewCommand(new ChangeCamera);
+	CommandList::Get().PushNewCommand(new ChangeProject);
+	CommandList::Get().InitAllCommands();
+
 	for (unsigned int i = 0; i < m_Commands.size(); i++)
 	{
 		if (m_Commands[i]->GetInput() == userinput)
+		{
 			m_Commands[i]->OnUpdate();
+			break;
+		}
 	}
+
+	CommandList::Get().ClearCommandsFromMemory();
 }
 
 CommandList& CommandList::Get()
@@ -68,9 +84,10 @@ void NewProject::OnInit()
 
 void NewProject::OnUpdate()
 {
+	ProjectVector pv;
+
 	if (std::filesystem::exists("projects.xml"))
 	{
-		ProjectVector pv;
 		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
 		Controller::Get().SetProjectVector(pv);
 	}
@@ -114,9 +131,10 @@ void NewCamera::OnUpdate()
 {
 	std::string userinput;
 
+	ProjectVector pv;
+
 	if (std::filesystem::exists("projects.xml"))
 	{
-		ProjectVector pv;
 		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
 		Controller::Get().SetProjectVector(pv);
 	}
@@ -126,9 +144,9 @@ void NewCamera::OnUpdate()
 		return;
 	}
 
-	Project& project = Controller::Get().GetActiveProject();
-	project.PushBackCamera();
+	Controller::Get().PushBackNewCamera();
 
+	Project& project = Controller::Get().GetActiveProject();
 	Camera& camera = Controller::Get().GetActiveCamera();
 	std::cout << "New camera created for " << project.GetTitle() << std::endl;
 
@@ -176,9 +194,10 @@ void NewRoll::OnInit()
 
 void NewRoll::OnUpdate()
 {
+	ProjectVector pv;
+
 	if (std::filesystem::exists("projects.xml"))
 	{
-		ProjectVector pv;
 		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
 		Controller::Get().SetProjectVector(pv);
 	}
@@ -214,9 +233,10 @@ void NewShot::OnInit()
 
 void NewShot::OnUpdate()
 {
+	ProjectVector pv;
+
 	if (std::filesystem::exists("projects.xml"))
 	{
-		ProjectVector pv;
 		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
 		Controller::Get().SetProjectVector(pv);
 	}
@@ -337,9 +357,10 @@ void Print::OnInit()
 
 void Print::OnUpdate()
 {
+	ProjectVector pv;
+
 	if (std::filesystem::exists("projects.xml"))
 	{
-		ProjectVector pv;
 		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
 		Controller::Get().SetProjectVector(pv);
 	}
@@ -383,9 +404,10 @@ void ChangeProject::OnInit()
 
 void ChangeProject::OnUpdate()
 {
+	ProjectVector pv;
+
 	if (std::filesystem::exists("projects.xml"))
 	{
-		ProjectVector pv;
 		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
 		Controller::Get().SetProjectVector(pv);
 	}
@@ -398,21 +420,73 @@ void ChangeProject::OnUpdate()
 	std::string userinput;
 	std::cout << "Change active project to: " << std::endl;
 	for (unsigned int i = 0; i < Controller::Get().GetProjectVector().GetVectorSize(); i++)
-		std::cout << Controller::Get().GetProjectVector().GetProject(i).GetTitle() << std::endl;
+		std::cout << i << " - " << Controller::Get().GetProjectVector().GetProject(i).GetTitle() << std::endl;
 
 	std::cout << "> ";
 	getline(std::cin, userinput);
 
 	for (unsigned int i = 0; i < Controller::Get().GetProjectVector().GetVectorSize(); i++)
 	{
-		if (userinput == Controller::Get().GetProjectVector().GetProject(i).GetTitle())
+		if (userinput == std::to_string(i))
 		{
 			Controller::Get().ChangeActiveProject(i);
 			std::cout << "Active project changed to " << Controller::Get().GetProjectVector().GetProject(i).GetTitle() << std::endl;
+
+			Serializer::Get().SerializeProjectVector(Controller::Get().GetProjectVector());
+			break;
 		}
-		else
-			std::cout << "Error - did not match any project titles" << std::endl;
+	}
+}
+
+// "changecamera" argument methods
+void ChangeCamera::OnInit()
+{
+	SetInput("changecamera");
+	SetDesc("Changes the active camera.");
+}
+
+void ChangeCamera::OnUpdate()
+{
+	ProjectVector pv;
+
+	if (std::filesystem::exists("projects.xml"))
+	{
+		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
+		Controller::Get().SetProjectVector(pv);
+	}
+	else
+	{
+		std::cout << "No projects or cameras created" << std::endl;
+		return;
 	}
 
-	Serializer::Get().SerializeProjectVector(Controller::Get().GetProjectVector());
+	std::string userinput;
+
+	Project& activeProject = Controller::Get().GetActiveProject();
+
+	std::cout << "Change active camera to: " << std::endl;
+	for (unsigned int i = 0; i < Controller::Get().GetActiveProject().GetCameraCount(); i++)
+	{
+		Camera& activeCamera = Controller::Get().GetActiveProject().GetCamera(i);
+		std::cout << activeCamera.GetID() << " (" << activeCamera.GetModel() << ")" << std::endl;
+	}
+
+	std::cout << "> ";
+	getline(std::cin, userinput);
+
+	for (unsigned int i = 0; i < activeProject.GetCameraCount(); i++)
+	{
+		Camera& activeCamera = activeProject.GetCamera(i);
+
+		if (userinput == activeCamera.GetID())
+		{
+			Controller::Get().ChangeActiveCamera(i);
+			std::cout << "Active camera changed to " << activeCamera.GetID() << " (" << activeCamera.GetModel() << ")" << std::endl;
+
+			Serializer::Get().SerializeProjectVector(Controller::Get().GetProjectVector());
+			break;
+		}
+	}
+
+
 }

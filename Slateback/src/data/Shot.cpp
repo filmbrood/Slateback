@@ -54,7 +54,7 @@ std::string Shot::GetTake()
 
 std::string Shot::GetFPS()
 {
-	return m_Take;
+	return m_FPS;
 }
 
 std::string Shot::GetLens()
