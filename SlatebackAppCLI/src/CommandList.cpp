@@ -204,9 +204,9 @@ void NewRoll::OnUpdate()
 	}
 
 	Camera& activeCamera = Controller::Get().GetActiveCamera();
+	activeCamera.PushNewRoll();
 	Roll& activeRoll = Controller::Get().GetActiveRoll();
 	std::string newRollID = activeCamera.GetID() + std::to_string(activeCamera.GetRollCount());
-	activeCamera.PushNewRoll();
 	activeRoll.SetID(newRollID);
 	std::cout << "New roll created for camera " << activeCamera.GetID() << " - " << activeRoll.GetID() << std::endl;
 
