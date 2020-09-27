@@ -13,6 +13,7 @@ int main(int argc, char** argv)
 	CommandList::Get().PushNewCommand(new Status);
 	CommandList::Get().PushNewCommand(new Print);
 	CommandList::Get().PushNewCommand(new Help);
+	CommandList::Get().PushNewCommand(new ChangeProject);
 	CommandList::Get().InitAllCommands();
 
 	CommandList::Get().OnUpdate(argv[1]);

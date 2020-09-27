@@ -373,3 +373,46 @@ void Help::OnUpdate()
 	}
 
 }
+
+// "changeproject" argument methods
+void ChangeProject::OnInit()
+{
+	SetInput("changeproject");
+	SetDesc("Change the active project.");
+}
+
+void ChangeProject::OnUpdate()
+{
+	if (std::filesystem::exists("projects.xml"))
+	{
+		ProjectVector pv;
+		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
+		Controller::Get().SetProjectVector(pv);
+	}
+	else
+	{
+		std::cout << "No projects created" << std::endl;
+		return;
+	}
+	
+	std::string userinput;
+	std::cout << "Change active project to: " << std::endl;
+	for (unsigned int i = 0; i < Controller::Get().GetProjectVector().GetVectorSize(); i++)
+		std::cout << Controller::Get().GetProjectVector().GetProject(i).GetTitle() << std::endl;
+
+	std::cout << "> ";
+	getline(std::cin, userinput);
+
+	for (unsigned int i = 0; i < Controller::Get().GetProjectVector().GetVectorSize(); i++)
+	{
+		if (userinput == Controller::Get().GetProjectVector().GetProject(i).GetTitle())
+		{
+			Controller::Get().ChangeActiveProject(i);
+			std::cout << "Active project changed to " << Controller::Get().GetProjectVector().GetProject(i).GetTitle() << std::endl;
+		}
+		else
+			std::cout << "Error - did not match any project titles" << std::endl;
+	}
+
+	Serializer::Get().SerializeProjectVector(Controller::Get().GetProjectVector());
+}

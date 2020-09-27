@@ -31,7 +31,7 @@ private:
 	std::vector<Command*> m_Commands;
 };
 
-// Declare new command classes here. Must define the input string with SetInput() when defining the OnInit() method, and must define the OnUpdate() method.
+// Declare new command classes here. Must define the input string and description with SetInput() and SetDesc() when defining the OnInit() method, and must define the OnUpdate() method.
 
 // "project" argument class
 class NewProject : public Command
@@ -83,6 +83,14 @@ public:
 
 // "help" argument class
 class Help : public Command
+{
+public:
+	void OnInit();
+	void OnUpdate();
+};
+
+// "changeproject" argument class
+class ChangeProject : public Command
 {
 public:
 	void OnInit();
