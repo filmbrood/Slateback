@@ -9,13 +9,13 @@ This repository is governed by the MIT License, detailed in the `LICENSE` file.
 
 
 ###### Getting Started
-Slateback was built in Windows with Visual Studio 2019, and it is recommended you utilize that as other IDEs on other OSs are yet to be tested.
+Slateback was created in Windows with Visual Studio 2019, but has successfully been built and ran on Linux. It is still recommended to utilize VS 2019 as other IDEs have yet to be tested.
 
 Clone the repository with `git clone --recursive https://github.com/filmbrood/Slateback.git`.
 
 
 ###### Roadmap
-At the moment, Slateback is command-line only, meaning it only runs in the terminal of the operation system of your choice. (Only tested on Windows!)
+At the moment, Slateback is command-line only, meaning it only runs in the terminal of the operation system of your choice. (Only tested on Windows and Linux!)
 
 Eventually, Slateback will have a separate user-friendly GUI interface that any fresh-outta-film-school 2nd AC will be able to pick up in minutes. But for now, to get started with Slateback, all the user must do is copy slt.exe to a directory, launch a terminal in said directory, and type the following commands:
 
