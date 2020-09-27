@@ -5,13 +5,13 @@
 #include "slateback.h"
 #include "CommandList.h"
 
+CommandList CommandList::s_Instance;
+
 CommandList::~CommandList()
 {
-	for (unsigned int i = 0; i < m_Commands.size(); i++)
-		delete m_Commands[i];
 }
 
-// CommandList methods. These handle updating the program and pushing new commands to the CommandList vector.
+// CommandList methods. These handle updating the program and managing commands in the CommandList vector.
 void CommandList::PushNewCommand(Command* command)
 {
 	m_Commands.push_back(command);
@@ -21,6 +21,24 @@ void CommandList::InitAllCommands()
 {
 	for (unsigned int i = 0; i < m_Commands.size(); i++)
 		m_Commands[i]->OnInit();
+}
+
+void CommandList::ClearCommandsFromMemory()
+{
+	for (unsigned int i = 0; i < m_Commands.size(); i++)
+		delete m_Commands[i];
+
+	m_Commands.clear();
+}
+
+unsigned int CommandList::GetCommandCount()
+{
+	return m_Commands.size();
+}
+
+Command* CommandList::GetCommand(unsigned int index)
+{
+	return m_Commands[index];
 }
 
 void CommandList::OnUpdate(const char* argv)
@@ -34,12 +52,18 @@ void CommandList::OnUpdate(const char* argv)
 	}
 }
 
+CommandList& CommandList::Get()
+{
+	return s_Instance;
+}
+
 // Define command methods here.
 
 // "project" argument methods
 void NewProject::OnInit()
 {
 	SetInput("project");
+	SetDesc("Creates a new project within Slateback.");
 }
 
 void NewProject::OnUpdate()
@@ -83,6 +107,7 @@ void NewProject::OnUpdate()
 void NewCamera::OnInit()
 {
 	SetInput("camera");
+	SetDesc("Creates a new camera within the active project.");
 }
 
 void NewCamera::OnUpdate()
@@ -146,6 +171,7 @@ void NewCamera::OnUpdate()
 void NewRoll::OnInit()
 {
 	SetInput("roll");
+	SetDesc("Creates a new roll within the active camera.");
 }
 
 void NewRoll::OnUpdate()
@@ -183,6 +209,7 @@ void NewRoll::OnUpdate()
 void NewShot::OnInit()
 {
 	SetInput("shot");
+	SetDesc("Creates a new shot within the active roll.");
 }
 
 void NewShot::OnUpdate()
@@ -256,6 +283,7 @@ void NewShot::OnUpdate()
 void Status::OnInit()
 {
 	SetInput("status");
+	SetDesc("Displays active project, camera, and roll.");
 }
 
 void Status::OnUpdate()
@@ -304,6 +332,7 @@ void Status::OnUpdate()
 void Print::OnInit()
 {
 	SetInput("print");
+	SetDesc("Outputs project camera report to CameraReport.txt.");
 }
 
 void Print::OnUpdate()
@@ -329,9 +358,18 @@ void Print::OnUpdate()
 void Help::OnInit()
 {
 	SetInput("help");
+	SetDesc("Displays list of functions.");
 }
 
 void Help::OnUpdate()
 {
-	std::cout << "Use 'slt project' to create a new project, then 'slt camera' to create a camera, 'slt roll' to create a roll, and finally 'slt shot' to create a new shot" << std::endl;
+	auto commands = CommandList::Get();
+
+	auto commandCount = commands.GetCommandCount();
+
+	for (unsigned int i = 0; i < commandCount; i++)
+	{
+		std::cout << commands.GetCommand(i)->GetInput() << " - " << commands.GetCommand(i)->GetDesc() << std::endl;
+	}
+
 }

@@ -6,17 +6,18 @@ bool running = true;
 
 int main(int argc, char** argv)
 {
-	CommandList commands;
-	commands.PushNewCommand(new NewProject);
-	commands.PushNewCommand(new NewCamera);
-	commands.PushNewCommand(new NewRoll);
-	commands.PushNewCommand(new NewShot);
-	commands.PushNewCommand(new Status);
-	commands.PushNewCommand(new Print);
-	commands.PushNewCommand(new Help);
-	commands.InitAllCommands();
+	CommandList::Get().PushNewCommand(new NewProject);
+	CommandList::Get().PushNewCommand(new NewCamera);
+	CommandList::Get().PushNewCommand(new NewRoll);
+	CommandList::Get().PushNewCommand(new NewShot);
+	CommandList::Get().PushNewCommand(new Status);
+	CommandList::Get().PushNewCommand(new Print);
+	CommandList::Get().PushNewCommand(new Help);
+	CommandList::Get().InitAllCommands();
 
-	commands.OnUpdate(argv[1]);
+	CommandList::Get().OnUpdate(argv[1]);
+
+	CommandList::Get().ClearCommandsFromMemory();
 
 	return 0;
 }

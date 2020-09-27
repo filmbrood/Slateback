@@ -1,10 +1,11 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 #include "Command.h"
 
-// Acts as a container class for a vector of command pointers.
+// Acts as a container class for a vector of command pointers. Runs as a Singleton.
 class CommandList
 {
 public:
@@ -13,10 +14,20 @@ public:
 
 	void PushNewCommand(Command* command);
 	void InitAllCommands();
+	void ClearCommandsFromMemory();
+
+	unsigned int GetCommandCount();
+	Command* GetCommand(unsigned int index);
 
 	void OnUpdate(const char* argv);
 
+	static CommandList& Get();
+
 private:
+	CommandList() {}
+
+	static CommandList s_Instance;
+
 	std::vector<Command*> m_Commands;
 };
 

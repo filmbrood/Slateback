@@ -9,3 +9,13 @@ void Command::SetInput(std::string input)
 {
 	m_Input = input;
 }
+
+std::string Command::GetDesc()
+{
+	return m_Desc;
+}
+
+void Command::SetDesc(std::string desc)
+{
+	m_Desc = desc;
+}
