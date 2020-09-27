@@ -1,13 +1,6 @@
+#include "slatebackpch.h"
+
 #include "Serializer.h"
-
-#include <cereal/cereal.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/string.hpp>
-#include <cereal/types/memory.hpp>
-#include <cereal/archives/xml.hpp>
-
-#include <fstream>
-#include <sstream>
 
 Serializer Serializer::s_Instance;
 

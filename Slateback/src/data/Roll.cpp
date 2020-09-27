@@ -1,3 +1,5 @@
+#include "slatebackpch.h"
+
 #include "Roll.h"
 
 void Roll::SetID(std::string id)

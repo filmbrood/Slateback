@@ -1,3 +1,5 @@
+#include "slatebackpch.h"
+
 #include "Controller.h"
 
 Controller Controller::s_Instance;

@@ -25,6 +25,9 @@ project "Slateback"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	
+	pchheader "slatebackpch.h"
+	pchsource "Slateback/slatebackpch.cpp"
+	
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -36,6 +39,7 @@ project "Slateback"
 
 	includedirs
 	{
+		".",
 		"Slateback/",
 		"%{IncludeDir.cereal}"
 	}

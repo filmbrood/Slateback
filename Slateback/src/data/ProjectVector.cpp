@@ -1,3 +1,5 @@
+#include "slatebackpch.h"
+
 #include "ProjectVector.h"
 
 void ProjectVector::PushNewProject()

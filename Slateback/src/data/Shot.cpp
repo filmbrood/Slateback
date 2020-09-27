@@ -1,3 +1,5 @@
+#include "slatebackpch.h"
+
 #include "Shot.h"
 
 void Shot::SetScene(std::string scene)
