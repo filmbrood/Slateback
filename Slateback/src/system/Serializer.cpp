@@ -8,7 +8,7 @@ Serializer Serializer::s_Instance; // Initialize singleton instance of Serialize
 void Serializer::SerializeProjectVector(ProjectVector& pv)
 {
 	std::ofstream xml;
-	xml.open("projects.xml");
+	xml.open("sltproj.xml");
 	{
 		cereal::XMLOutputArchive archive(xml);
 		archive(pv);
@@ -19,7 +19,7 @@ void Serializer::SerializeProjectVector(ProjectVector& pv)
 void Serializer::DeserializeProjectVector(ProjectVector& pv, std::string filepath)
 {
 	std::ifstream xml;
-	xml.open("projects.xml");
+	xml.open("sltproj.xml");
 	{
 		cereal::XMLInputArchive archive(xml);
 		archive(pv);

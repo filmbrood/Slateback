@@ -1,6 +1,6 @@
 #include "sltcli_pch.h"
 
-#include "CommandList.h"
+#include "SlatebackAppCLI/src/CommandList.h"
 
 void NewCamera::OnInit()
 {
@@ -12,9 +12,9 @@ void NewCamera::OnUpdate()
 {
 
 	ProjectVector pv;
-	if (std::filesystem::exists("projects.xml"))
+	if (std::filesystem::exists("sltproj.xml"))
 	{
-		Serializer::Get().DeserializeProjectVector(pv, "projects.xml");
+		Serializer::Get().DeserializeProjectVector(pv, "sltproj.xml");
 		Controller::Get().SetProjectVector(pv);
 	}
 	else

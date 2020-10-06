@@ -1,6 +1,5 @@
+#include <slateback.h>
 #include "sltcli_pch.h"
-
-#include "slateback.h"
 #include "CommandList.h"
 
 CommandList CommandList::s_Instance; // Initialize singleton instance of CommandList
@@ -65,32 +64,3 @@ CommandList& CommandList::Get()
 {
 	return s_Instance;
 }
-
-/* 
-
-Define individual Command children methods below.
-
-*/
-
-// "camera" argument methods
-
-
-// "roll" argument methods
-
-
-// "shot" argument methods
-
-
-// "status" argument methods
-
-
-// "print" argument methods
-
-
-
-
-// "changeproject" argument methods
-
-
-// "changecamera" argument methods
-

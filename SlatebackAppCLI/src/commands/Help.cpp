@@ -1,6 +1,6 @@
 #include "sltcli_pch.h"
 
-#include "CommandList.h"
+#include "SlatebackAppCLI/src/CommandList.h"
 
 void Help::OnInit()
 {
