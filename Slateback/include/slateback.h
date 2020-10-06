@@ -1,4 +1,4 @@
 #pragma once
 
-#include "../src/system/Controller.h"
-#include "../src/system/Serializer.h"
+#include "../src/Controller.h"
+#include "../src/Serializer.h"

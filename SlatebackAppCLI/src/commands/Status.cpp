@@ -1,7 +1,5 @@
 #include "sltcli_pch.h"
 
-#include "SlatebackAppCLI/src/CommandList.h"
-
 void Status::OnInit()
 {
 	SetInput("status");
@@ -10,19 +8,9 @@ void Status::OnInit()
 
 void Status::OnUpdate()
 {
-	ProjectVector pv;
-	if (std::filesystem::exists("sltproj.xml"))
-	{
-		Serializer::Get().DeserializeProjectVector(pv, "sltproj.xml");
-		Controller::Get().SetProjectVector(pv);
-	}
-	else
-	{
-		std::cout << "No projects created." << std::endl;
-		return;
-	}
+	LoadSltProjXML("No projects created");
 
-	if (pv.GetVectorSize())
+	if (Controller::Get().GetProjectVector().GetVectorSize())
 	{
 		Project& activeProject = Controller::Get().GetActiveProject();
 		std::cout << "Current Project: " << activeProject.GetTitle() << std::endl;

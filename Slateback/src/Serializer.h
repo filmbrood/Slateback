@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../data/ProjectVector.h"
+#include "ProjectVector.h"
 
 // Singleton class for data serialization of the ProjectVector class
 class Serializer

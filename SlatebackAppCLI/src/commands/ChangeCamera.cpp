@@ -1,7 +1,5 @@
 #include "sltcli_pch.h"
 
-#include "SlatebackAppCLI/src/CommandList.h"
-
 void ChangeCamera::OnInit()
 {
 	SetInput("changecamera");
@@ -10,19 +8,8 @@ void ChangeCamera::OnInit()
 
 void ChangeCamera::OnUpdate()
 {
-	ProjectVector pv;
-	if (std::filesystem::exists("sltproj.xml"))
-	{
-		Serializer::Get().DeserializeProjectVector(pv, "sltproj.xml");
-		Controller::Get().SetProjectVector(pv);
-	}
-	else
-	{
-		std::cout << "No projects or cameras created" << std::endl;
-		return;
-	}
+	LoadSltProjXML("No projects or cameras created");
 
-	std::string userinput;
 	Project& activeProject = Controller::Get().GetActiveProject();
 	std::cout << "Change active camera to: " << std::endl;
 	for (unsigned int i = 0; i < Controller::Get().GetActiveProject().GetCameraCount(); i++)
@@ -31,8 +18,8 @@ void ChangeCamera::OnUpdate()
 		std::cout << activeCamera.GetID() << " (" << activeCamera.GetModel() << ")" << std::endl;
 	}
 
-	std::cout << "> ";
-	getline(std::cin, userinput);
+	std::string userinput;
+	UserPrompt(userinput, "");
 
 	for (unsigned int i = 0; i < activeProject.GetCameraCount(); i++)
 	{

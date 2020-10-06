@@ -1,7 +1,5 @@
 #include "sltcli_pch.h"
 
-#include "SlatebackAppCLI/src/CommandList.h"
-
 void NewRoll::OnInit()
 {
 	SetInput("roll");
@@ -10,16 +8,7 @@ void NewRoll::OnInit()
 
 void NewRoll::OnUpdate()
 {
-	ProjectVector pv;
-	if (std::filesystem::exists("sltproj.xml"))
-	{
-		Serializer::Get().DeserializeProjectVector(pv, "sltproj.xml");
-		Controller::Get().SetProjectVector(pv);
-	}
-	else
-	{
-		std::cout << "Must create project and camera first" << std::endl;
-	}
+	LoadSltProjXML("Must create project and camera first");
 
 	if (!Controller::Get().GetActiveProject().GetCameraCount())
 	{

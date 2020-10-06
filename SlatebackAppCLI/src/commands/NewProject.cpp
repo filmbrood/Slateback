@@ -1,7 +1,5 @@
 #include "sltcli_pch.h"
 
-#include "SlatebackAppCLI/src/CommandList.h"
-
 void NewProject::OnInit()
 {
 	SetInput("project");
@@ -10,32 +8,23 @@ void NewProject::OnInit()
 
 void NewProject::OnUpdate()
 {
-	ProjectVector pv;
-	if (std::filesystem::exists("sltproj.xml"))
-	{
-		Serializer::Get().DeserializeProjectVector(pv, "sltproj.xml");
-		Controller::Get().SetProjectVector(pv);
-	}
+	LoadSltProjXML("Initialized new sltproj.xml for save data");
+
+	std::string userinput;
 
 	Controller::Get().PushBackNewProject();
 	Project& activeProject = Controller::Get().GetActiveProject();
 
-	std::string userinput;
-	std::cout << "Project Title > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "Project Title");
 	activeProject.SetTitle(userinput);
-	std::cout << "New project created - " << activeProject.GetTitle() << std::endl;
 
-	std::cout << "Project Company > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "Project Company");
 	activeProject.SetCompany(userinput);
 
-	std::cout << "Project Director > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "Project Director");
 	activeProject.SetDirector(userinput);
 
-	std::cout << "Project DP > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "Project DP");
 	activeProject.SetDP(userinput);
 
 	Serializer::Get().SerializeProjectVector(Controller::Get().GetProjectVector());

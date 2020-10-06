@@ -1,7 +1,5 @@
 #include "sltcli_pch.h"
 
-#include "SlatebackAppCLI/src/CommandList.h"
-
 void Help::OnInit()
 {
 	SetInput("help");

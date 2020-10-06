@@ -1,7 +1,5 @@
 #include "sltcli_pch.h"
 
-#include "SlatebackAppCLI/src/CommandList.h"
-
 void NewShot::OnInit()
 {
 	SetInput("shot");
@@ -10,16 +8,7 @@ void NewShot::OnInit()
 
 void NewShot::OnUpdate()
 {
-	ProjectVector pv;
-	if (std::filesystem::exists("sltproj.xml"))
-	{
-		Serializer::Get().DeserializeProjectVector(pv, "sltproj.xml");
-		Controller::Get().SetProjectVector(pv);
-	}
-	else
-	{
-		std::cout << "Must create project, camera, and roll first" << std::endl;
-	}
+	LoadSltProjXML("Must create project, camera, and roll first");
 
 	if (!Controller::Get().GetActiveProject().GetCameraCount())
 	{
@@ -38,36 +27,29 @@ void NewShot::OnUpdate()
 	std::cout << "New shot created for Roll " << Controller::Get().GetActiveRoll().GetID() << std::endl;
 
 	std::string userinput;
-	std::cout << "Scene > ";
-	getline(std::cin, userinput);
+
+	UserPrompt(userinput, "Scene");
 	activeShot.SetScene(userinput);
 
-	std::cout << "Take > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "Take");
 	activeShot.SetTake(userinput);
 
-	std::cout << "FPS > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "FPS");
 	activeShot.SetFPS(userinput);
 
-	std::cout << "Focal Length > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "Focal Length");
 	activeShot.SetLens(userinput);
 
-	std::cout << "f/Stop > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "f/Stop");
 	activeShot.SetFStop(userinput);
 
-	std::cout << "ISO > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "ISO");
 	activeShot.SetISO(userinput);
 
-	std::cout << "Color Temp > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "Color Temp");
 	activeShot.SetColorTemp(userinput);
 
-	std::cout << "Filter > ";
-	getline(std::cin, userinput);
+	UserPrompt(userinput, "Filter");
 	activeShot.SetFilter(userinput);
 
 	Serializer::Get().SerializeProjectVector(Controller::Get().GetProjectVector());

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../data/ProjectVector.h"
+#include "ProjectVector.h"
 
 // Class that acts as controller for data system by directly manipulating the ProjectVector member m_Projects, and accessing all dataset classes from there. Runs as Singleton, access with Controller::Get().
 class Controller
