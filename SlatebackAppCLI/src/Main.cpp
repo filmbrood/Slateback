@@ -1,3 +1,5 @@
+#include "sltcli_pch.h"
+
 #include "CommandList.h"
 
 // Entry point

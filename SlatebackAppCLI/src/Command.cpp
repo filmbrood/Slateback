@@ -1,3 +1,5 @@
+#include "sltcli_pch.h"
+
 #include "Command.h"
 
 // Command class methods. See Command.h for more info.

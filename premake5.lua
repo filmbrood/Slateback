@@ -58,7 +58,10 @@ project "SlatebackAppCLI"
 	language "C++"
 	cppdialect "C++17"
 	staticruntime "off"
-
+	
+	pchheader "sltcli_pch.h"
+	pchsource "SlatebackAppCLI/sltcli_pch.cpp"
+	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	targetname ("slt")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -67,10 +70,13 @@ project "SlatebackAppCLI"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/**.h",
+		"%{prj.name}/**.cpp"
 	}
 
 	includedirs
 	{
+		".",
 		"%{IncludeDir.slateback}",
 		"%{IncludeDir.cereal}"
 	}
