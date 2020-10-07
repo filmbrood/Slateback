@@ -24,6 +24,7 @@ private:
 };
 
 // Declare new command classes here. Must define the input string and description with SetInput() and SetDesc() when defining the OnInit() method, and must define the OnUpdate() method.
+// Command methods are defined in their respective .cpp files in src/commands/.
 
 class NewProject : public Command // "project" argument class
 {
@@ -82,6 +83,13 @@ public:
 };
 
 class ChangeCamera : public Command // "changecamera" argument class
+{
+public:
+	void OnInit();
+	void OnUpdate();
+};
+
+class About : public Command // "about" argument class
 {
 public:
 	void OnInit();

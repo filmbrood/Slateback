@@ -19,7 +19,16 @@ void NewRoll::OnUpdate()
 	Camera& activeCamera = Controller::Get().GetActiveCamera();
 	activeCamera.PushNewRoll();
 	Roll& activeRoll = Controller::Get().GetActiveRoll();
-	std::string newRollID = activeCamera.GetID() + std::to_string(activeCamera.GetRollCount());
+
+	// Sets newly created roll's ID based on the standard AXXX notation
+	std::string newRollID;
+	if (activeCamera.GetRollCount() < 10)
+		newRollID = activeCamera.GetID() + "00" + std::to_string(activeCamera.GetRollCount());
+	else if (activeCamera.GetRollCount() >= 10 && activeCamera.GetRollCount() < 100)
+		newRollID = activeCamera.GetID() + "0" + std::to_string(activeCamera.GetRollCount());
+	else
+		newRollID = activeCamera.GetID() + std::to_string(activeCamera.GetRollCount());
+
 	activeRoll.SetID(newRollID);
 	std::cout << "New roll created for camera " << activeCamera.GetID() << " - " << activeRoll.GetID() << std::endl;
 

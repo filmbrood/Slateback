@@ -37,16 +37,17 @@ Command* CommandList::GetCommand(unsigned int index)
 void CommandList::OnUpdate(const char* argv)
 {
 	std::string userinput = argv;
-	CommandList::Get().PushNewCommand(new NewProject);
-	CommandList::Get().PushNewCommand(new NewCamera);
-	CommandList::Get().PushNewCommand(new NewRoll);
-	CommandList::Get().PushNewCommand(new NewShot);
-	CommandList::Get().PushNewCommand(new Status);
-	CommandList::Get().PushNewCommand(new Print);
-	CommandList::Get().PushNewCommand(new Help);
-	CommandList::Get().PushNewCommand(new ChangeCamera);
-	CommandList::Get().PushNewCommand(new ChangeProject);
-	CommandList::Get().InitAllCommands();
+	PushNewCommand(new NewProject);
+	PushNewCommand(new NewCamera);
+	PushNewCommand(new NewRoll);
+	PushNewCommand(new NewShot);
+	PushNewCommand(new Status);
+	PushNewCommand(new Print);
+	PushNewCommand(new Help);
+	PushNewCommand(new ChangeCamera);
+	PushNewCommand(new ChangeProject);
+	PushNewCommand(new About);
+	InitAllCommands();
 
 	for (unsigned int i = 0; i < m_Commands.size(); i++)
 	{

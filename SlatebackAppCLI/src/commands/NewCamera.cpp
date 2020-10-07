@@ -9,7 +9,7 @@ void NewCamera::OnInit()
 void NewCamera::OnUpdate()
 {
 	LoadSltProjXML("Must create project first");
-
+	
 	Controller::Get().PushBackNewCamera();
 	Project& project = Controller::Get().GetActiveProject();
 	Camera& camera = Controller::Get().GetActiveCamera();
