@@ -12,5 +12,4 @@ void About::OnUpdate()
 	std::cout << "Version: " << SLATEBACKVERSION << std::endl;
 	std::cout << "Author: " << AUTHOR << std::endl;
 	std::cout << "Copyright " << COPYRIGHT << ". All rights reserved." << std::endl;
-	std::cin.get();
 }

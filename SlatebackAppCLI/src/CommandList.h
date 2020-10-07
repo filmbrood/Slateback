@@ -95,3 +95,27 @@ public:
 	void OnInit();
 	void OnUpdate();
 };
+
+class ChangeRoll : public Command // "changeroll" argument class
+{
+	void OnInit();
+	void OnUpdate();
+};
+
+class EditProject : public Command // "editproject" argument class
+{
+	void OnInit();
+	void OnUpdate();
+};
+
+class EditCamera : public Command // "editproject" argument class
+{
+	void OnInit();
+	void OnUpdate();
+};
+
+class EditShot : public Command // "editproject" argument class
+{
+	void OnInit();
+	void OnUpdate();
+};

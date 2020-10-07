@@ -4,5 +4,5 @@
 #define AUTHOR "Dawn Moore"
 #define COPYRIGHT "2020"
 
-#include "../src/Controller.h"
-#include "../src/Serializer.h"
+#include "Slateback/src/Controller.h"
+#include "Slateback/src/Serializer.h"
