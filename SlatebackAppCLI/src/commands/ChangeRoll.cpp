@@ -3,7 +3,7 @@
 void ChangeRoll::OnInit()
 {
 	SetInput("changeroll");
-	SetDesc("Change the active camera roll. (NOT YET IMPLEMENTED)");
+	SetDesc("Change the active camera roll.");
 }
 
 void ChangeRoll::OnUpdate()
