@@ -36,14 +36,39 @@ Command* CommandList::GetCommand(unsigned int index)
 
 void CommandList::OnUpdate(const char* argv)
 {
+	// Checks if argv == 0. If true, will push all commands and display the Help screen by default.
+	if (!argv)
+	{
+		PushNewCommand(new Help);
+		PushNewCommand(new NewProject);
+		PushNewCommand(new NewCamera);
+		PushNewCommand(new NewRoll);
+		PushNewCommand(new NewShot);
+		PushNewCommand(new Status);
+		PushNewCommand(new Print);
+		PushNewCommand(new ChangeCamera);
+		PushNewCommand(new ChangeProject);
+		PushNewCommand(new About);
+		PushNewCommand(new ChangeRoll);
+		PushNewCommand(new EditProject);
+		PushNewCommand(new EditCamera);
+		PushNewCommand(new EditShot);
+		PushNewCommand(new Take);
+		InitAllCommands();
+
+		m_Commands[0]->OnUpdate();
+		return;
+	}
+
 	std::string userinput = argv;
+
+	PushNewCommand(new Help);
 	PushNewCommand(new NewProject);
 	PushNewCommand(new NewCamera);
 	PushNewCommand(new NewRoll);
 	PushNewCommand(new NewShot);
 	PushNewCommand(new Status);
 	PushNewCommand(new Print);
-	PushNewCommand(new Help);
 	PushNewCommand(new ChangeCamera);
 	PushNewCommand(new ChangeProject);
 	PushNewCommand(new About);

@@ -46,7 +46,7 @@ Camera 2nd AC > John Man, Jr.
 `slt roll` Adds a new roll to the active camera.
 ```
 F:\>slt roll
-New roll created for camera A - A1
+New roll created for camera A - A001
 ```
 
 `slt shot` Adds a new shot to the active roll.
