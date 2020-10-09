@@ -10,7 +10,7 @@ public:
 public:
 	// Methods for setting member variables. Names are self-explanatory.
 	void SetScene(std::string scene);
-	void SetTake(std::string take);
+	void SetTake(unsigned int take);
 	void SetFPS(std::string fps);
 	void SetLens(std::string lens);
 	void SetFStop(std::string fstop);
@@ -20,7 +20,7 @@ public:
 
 	// Methods for returning member variables.
 	std::string GetScene();
-	std::string GetTake();
+	unsigned int GetTake();
 	std::string GetFPS();
 	std::string GetLens();
 	std::string GetFStop();
@@ -33,7 +33,7 @@ public:
 
 private:
 	std::string m_Scene;
-	std::string m_Take;
+	unsigned int m_Take;
 	std::string m_FPS;
 	std::string m_Lens;
 	std::string m_FStop;

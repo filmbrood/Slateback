@@ -9,7 +9,7 @@ void Shot::SetScene(std::string scene)
 	m_Scene = scene;
 }
 
-void Shot::SetTake(std::string take)
+void Shot::SetTake(unsigned int take)
 {
 	m_Take = take;
 }
@@ -49,7 +49,7 @@ std::string Shot::GetScene()
 	return m_Scene;
 }
 
-std::string Shot::GetTake()
+unsigned int Shot::GetTake()
 {
 	return m_Take;
 }

@@ -119,3 +119,9 @@ class EditShot : public Command // "editproject" argument class
 	void OnInit();
 	void OnUpdate();
 };
+
+class Take : public Command // "take" argument class
+{
+	void OnInit();
+	void OnUpdate();
+};

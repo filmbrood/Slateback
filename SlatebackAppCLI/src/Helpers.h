@@ -5,3 +5,4 @@
 
 void LoadSltProjXML(const std::string& errormessage = "Must create project first"); // Loads in ProjectVector data into new ProjectVector instance, then copies that data into the Controller's ProjectVector member
 void UserPrompt(std::string& userinput, const std::string& message); // Outputs " > " to the screen and obtains user input, can display a message before the " > "
+void UserPrompt(unsigned int& userInputInt, const std::string& message); // Overload for unsigned integers

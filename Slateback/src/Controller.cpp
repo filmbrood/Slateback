@@ -162,7 +162,7 @@ std::string Controller::GetShotLogStringFromRoll(Roll& roll)
 	{
 		Shot& activeShot = roll.GetShot(i);
 
-		output += "      [SHOT " + activeShot.GetScene() + "-" + activeShot.GetTake() + "]\n";
+		output += "      [SHOT " + activeShot.GetScene() + "-" + std::to_string(activeShot.GetTake()) + "]\n";
 		output += "      FPS: " + activeShot.GetFPS() + "\n";
 		output += "      Focal Length: " + activeShot.GetLens() + "\n";
 		output += "      f/Stop: " + activeShot.GetFStop() + "\n";

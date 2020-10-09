@@ -27,12 +27,13 @@ void NewShot::OnUpdate()
 	std::cout << "New shot created for Roll " << Controller::Get().GetActiveRoll().GetID() << std::endl;
 
 	std::string userinput;
+	unsigned int userInputInt = 0;
 
 	UserPrompt(userinput, "Scene");
 	activeShot.SetScene(userinput);
 
-	UserPrompt(userinput, "Take");
-	activeShot.SetTake(userinput);
+	UserPrompt(userInputInt, "Take");
+	activeShot.SetTake(userInputInt);
 
 	UserPrompt(userinput, "FPS");
 	activeShot.SetFPS(userinput);

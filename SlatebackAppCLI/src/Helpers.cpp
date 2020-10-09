@@ -24,3 +24,12 @@ void UserPrompt(std::string& userinput, const std::string& message)
 	std::cout << message << " > ";
 	getline(std::cin, userinput);
 }
+
+void UserPrompt(unsigned int& userInputInt, const std::string& message)
+{
+	std::cout << message << " > ";
+	std::string buffer;
+	getline(std::cin, buffer);
+
+	userInputInt = std::atoi(buffer.c_str());
+}

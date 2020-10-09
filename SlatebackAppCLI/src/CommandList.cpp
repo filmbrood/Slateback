@@ -51,6 +51,7 @@ void CommandList::OnUpdate(const char* argv)
 	PushNewCommand(new EditProject);
 	PushNewCommand(new EditCamera);
 	PushNewCommand(new EditShot);
+	PushNewCommand(new Take);
 	InitAllCommands();
 
 	for (unsigned int i = 0; i < m_Commands.size(); i++)
