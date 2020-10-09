@@ -9,5 +9,5 @@ Debug/
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
-*.txt
+CameraReport.txt
 *.xml
