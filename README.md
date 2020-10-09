@@ -63,4 +63,8 @@ Color Temp > 5600K
 Filter > Prom Mist 1/8
 ```
 
+`slt take` Logs a new shot, but copies the details from the previous shot while incrementing the take number. This makes logging shots with several takes and few changes MUCH quicker.
+
 When finished, `slt print` prints out a camera report based on the active project to `CameraReport.txt`.
+
+For extra help, all commands with brief descriptions can be viewed in detail with `slt help` at any time.

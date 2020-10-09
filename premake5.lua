@@ -14,7 +14,6 @@ IncludeDir = {}
 IncludeDir["slateback"] = "Slateback/include"
 IncludeDir["cereal"] = "Dependencies/cereal/include/"
 
-group ""
 project "Slateback"
 	location "Slateback"
 	kind "StaticLib"
