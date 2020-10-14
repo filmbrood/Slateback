@@ -1,14 +1,14 @@
 # Slateback
 **Generate camera reports quickly and efficiently.**
 
-This repository houses the source code for Slateback, a camera report generator built in C++. 
+This repository houses the source code for Slateback, a camera report generator built in C++.
 
 At the moment, the code has only been tested on Windows, but does not feature any platform-specific code and should run on any operating system without issue.
 
 This repository is governed by the MIT License, detailed in the `LICENSE` file.
 
 
-###### Getting Started
+###### Contributing
 Slateback was created in Windows with Visual Studio 2019, but has successfully been built and ran on Linux. It is still recommended to utilize VS 2019 as other IDEs have yet to be tested.
 
 Clone the repository with `git clone --recursive https://github.com/filmbrood/Slateback.git`.

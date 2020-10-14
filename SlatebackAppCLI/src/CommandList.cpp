@@ -5,7 +5,7 @@
 CommandList CommandList::s_Instance; // Initialize singleton instance of CommandList
 
 // CommandList methods. See CommandList.h for more info.
-void CommandList::PushNewCommand(Command* command) 
+void CommandList::PushNewCommand(Command* command)
 {
 	m_Commands.push_back(command);
 }

@@ -1,7 +1,7 @@
 workspace "Slateback"
 	architecture "x64"
 	startproject "SlatebackAppCLI"
-	
+
 	configurations
 	{
 		"Debug",
@@ -23,10 +23,9 @@ project "Slateback"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	
-	pchheader "slatebackpch.h"
-	pchsource "Slateback/slatebackpch.cpp"
-	
+
+
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -50,17 +49,18 @@ project "Slateback"
 	filter "configurations:Release"
 		runtime "Release"
 		optimize "On"
-		
+
+	filter "configurations:vs2019"
+		pchheader "slatebackpch.h"
+		pchsource "Slateback/slatebackpch.cpp"
+
 project "SlatebackAppCLI"
 	location "SlatebackAppCLI"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
 	staticruntime "off"
-	
-	pchheader "sltcli_pch.h"
-	pchsource "SlatebackAppCLI/sltcli_pch.cpp"
-	
+
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	targetname ("slt")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -79,7 +79,7 @@ project "SlatebackAppCLI"
 		"%{IncludeDir.slateback}",
 		"%{IncludeDir.cereal}"
 	}
-	
+
 	links
 	{
 		"Slateback"
@@ -92,3 +92,7 @@ project "SlatebackAppCLI"
 	filter "configurations:Release"
 		runtime "Release"
 		optimize "On"
+
+		filter "configurations:vs2019"
+			pchheader "sltcli_pch.h"
+			pchsource "SlatebackAppCLI/sltcli_pch.cpp"
