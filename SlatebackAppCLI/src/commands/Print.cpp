@@ -14,4 +14,6 @@ void Print::OnUpdate()
 	logfile.open("CameraReport.txt");
 	logfile << Controller::Get().GetLogOutputString() << std::endl;
 	logfile.close();
+
+	std::cout << "Printed camera report to CameraReport.txt" << std::endl;
 }
