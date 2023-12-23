@@ -8,11 +8,14 @@ At the moment, the code has only been tested on Windows, but does not feature an
 This repository is governed by the MIT License, detailed in the `LICENSE` file.
 
 
-###### Contributing
+###### Contributing / Building
 Slateback was created in Windows with Visual Studio 2019, but has successfully been built and ran on Linux. It is still recommended to utilize VS 2019 as other IDEs have yet to be tested.
 
 Clone the repository with `git clone --recursive https://github.com/filmbrood/Slateback.git`.
 
+On Windows, run `premake/premake5.exe vs2019` from the project root to generate Visual Studio project files.
+
+On Linux (tested on Debian Ubuntu), run `premake/premake5 gmake2` from the project root to generate makefiles, and build the project with `make config=debug` or `make config=release`.
 
 ###### Roadmap
 At the moment, Slateback is command-line only, meaning it only runs in the terminal of the operation system of your choice. (Only tested on Windows and Linux!)
