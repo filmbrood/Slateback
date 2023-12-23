@@ -32,7 +32,7 @@ project "Slateback"
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/include/**.h",
 		"%{prj.name}/**.h",
-		"%{prj.name}/**.cpp",
+		"%{prj.name}/**.cpp"
 	}
 
 	includedirs
@@ -70,14 +70,15 @@ project "SlatebackAppCLI"
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/**.h",
-		"%{prj.name}/**.cpp"
+		"%{prj.name}/**.cpp",
 	}
 
 	includedirs
 	{
 		".",
 		"%{IncludeDir.slateback}",
-		"%{IncludeDir.cereal}"
+		"%{IncludeDir.cereal}",
+		"%{prj.name}"
 	}
 
 	links
@@ -94,5 +95,5 @@ project "SlatebackAppCLI"
 		optimize "On"
 
 		filter "configurations:vs2019"
-			pchheader "sltcli_pch.h"
+			pchheader "SlatebackAppCLI/sltcli_pch.h"
 			pchsource "SlatebackAppCLI/sltcli_pch.cpp"
